@@ -1,0 +1,6 @@
+//	auth
+export const PRISTINE_LOGIN_FORM = 'PRISTINE_LOGIN_FORM';
+export const PRISTINE_REG_FORM = 'PRISTINE_REG_FORM';
+export const LOGIN_ONCHANGE = 'LOGIN_ONCHANGE';
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+export const LOGIN_FAIL = 'LOGIN_FAIL';

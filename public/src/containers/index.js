@@ -1,4 +1,5 @@
+import AppContainer from './AppContainer';
 import HomeContainer from './HomeContainer';
 import LoginContainer from './LoginContainer';
 
-export { HomeContainer, LoginContainer };
+export { AppContainer, HomeContainer, LoginContainer };

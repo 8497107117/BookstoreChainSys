@@ -1,8 +1,8 @@
 import Immutable from 'immutable';
 
 const initialState = Immutable.fromJS({
-  authentucated: false,
-  user: null
+  isAuthenticated: false,
+  bookstore: null
 });
 
 const Authentication = (state = initialState, action) => {

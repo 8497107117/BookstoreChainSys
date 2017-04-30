@@ -9,7 +9,7 @@ import {
 const check = ({ store, password }) => {
   return new Promise((resolve, reject) => {
     const storePattern = /^[A-Za-z0-9]{4,16}$/;
-    const passwordPattern = /^[A-Za-z0-9]{6,16}$/;
+    const passwordPattern = /^[A-Za-z0-9]{4,16}$/;
     let rejectReason = [];
     let err = false;
     if (!storePattern.test(store) || !store) {
@@ -23,7 +23,7 @@ const check = ({ store, password }) => {
       err = true;
       rejectReason.push({
         field: 'password',
-        errMsg: 'Only characters or digits smaller than 16 and more than 6'
+        errMsg: 'Only characters or digits smaller than 16 and more than 4'
       });
     }
     if (err) {
@@ -36,10 +36,11 @@ const check = ({ store, password }) => {
 };
 
 //  login
-const loginSuccess = (result) => {
-  console.log(result);
+const loginSuccess = (store, token) => {
+  sessionStorage.setItem('token', token);
   return {
-    type: LOGIN_SUCCESS
+    type: LOGIN_SUCCESS,
+    store
   };
 };
 
@@ -71,22 +72,24 @@ export const login = (data) => {
   return dispatch => {
     check(data)
       .then(() => {
-        fetch('/api/login', {
+        fetch('/api/authenticate', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
           },
           body: JSON.stringify(data)
         })
-          .then(result => {
-            dispatch(pristineLoginForm());
-            dispatch(loginSuccess(result));
-          })
-          .catch(err => {
-            console.log(err);
-            err.forEach(({ field, errMsg }) => {
-              dispatch(loginFail(field, errMsg));
-            });
+          .then(res => res.json())
+          .then(({ success, result, token }) => {
+            if (success) {
+              dispatch(pristineLoginForm());
+              dispatch(loginSuccess(result, token));
+            }
+            else {
+              result.forEach(({ field, errMsg }) => {
+                dispatch(loginFail(field, errMsg));
+              });
+            }
           });
       })
       .catch(err => {
@@ -94,5 +97,25 @@ export const login = (data) => {
           dispatch(loginFail(field, errMsg));
         });
       });
+  };
+};
+
+export const verifyAuth = () => {
+  return dispath => {
+    const token = sessionStorage.getItem('token');
+    if (token) {
+      fetch('/api/verifyAuth', {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      })
+        .then(res => res.json())
+        .then(({ success, result }) => {
+          if (success) {
+            dispath(loginSuccess(result, token));
+          }
+        });
+    }
+    return { type: null };
   };
 };

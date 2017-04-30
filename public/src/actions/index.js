@@ -9,7 +9,8 @@ import {
 import {
 	pristineLoginForm,
 	loginOnChange,
-	login
+	login,
+	verifyAuth
 } from './authActions';
 import switchSidebar from './uiActions';
 
@@ -23,5 +24,6 @@ export {
 	pristineLoginForm,
 	loginOnChange,
 	login,
+	verifyAuth,
 	switchSidebar
 };

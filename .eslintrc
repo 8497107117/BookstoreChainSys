@@ -30,6 +30,13 @@
     "prefer-const": [
       0
     ],
+    "quote-props": [
+      "error",
+      "as-needed",
+      {
+        "unnecessary": false
+      }
+    ],
     "jsx-quotes": [
       0
     ]

@@ -4,6 +4,7 @@ import App from '../components/App';
 import { switchSidebar } from '../actions';
 
 const mapStateToProps = (state) => ({
+  isAuthenticated: state.getIn(['Authentication', 'isAuthenticated']),
   overlayStyle: { display: state.getIn(['sidebar', 'overlayDisplay']) },
   sidebarButtonClass: `sidebar-button ${state.getIn(['sidebar', 'buttonClass'])}`
 });

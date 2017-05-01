@@ -8,7 +8,7 @@ const getInventory = (books) => {
 };
 
 const requestInventory = () => {
-  return dispath => {
+  return dispatch => {
     const token = sessionStorage.getItem('token');
     if (token) {
       fetch('/api/inventory', {
@@ -19,7 +19,7 @@ const requestInventory = () => {
         .then(res => res.json())
         .then(({ success, result }) => {
           if (success) {
-            dispath(getInventory(result.books));
+            dispatch(getInventory(result.books));
           }
         });
     }

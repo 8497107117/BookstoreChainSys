@@ -3,10 +3,7 @@ import PropTypes from 'prop-types';
 import { Card } from 'semantic-ui-react';
 import Book from './Book';
 
-const Inventory = ({ books, needReq, req }) => {
-  if (needReq) {
-    req();
-  }
+const Inventory = ({ books }) => {
   return (
     <Card.Group itemsPerRow={4}>
       {!!books && books.map((book) => <Book key={book.id} book={book} />)}
@@ -16,8 +13,6 @@ const Inventory = ({ books, needReq, req }) => {
 
 Inventory.propTypes = {
   books: PropTypes.arrayOf(PropTypes.shape()),
-  needReq: PropTypes.bool.isRequired,
-  req: PropTypes.func.isRequired
 };
 
 Inventory.defaultProps = {

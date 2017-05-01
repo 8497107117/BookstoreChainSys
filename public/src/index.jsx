@@ -11,6 +11,7 @@ import {
   AppContainer,
   AuthRouteContainer,
   HomeContainer,
+  InventoryContainer,
   LoginContainer,
   PrivateRouteContainer
 } from './containers';
@@ -26,6 +27,7 @@ render(
     <Router>
       <AppContainer>
         <PrivateRouteContainer exact path='/' component={HomeContainer} />
+        <PrivateRouteContainer exact path='/inventory' component={InventoryContainer} />
         <AuthRouteContainer path='/login' component={LoginContainer} />
       </AppContainer>
     </Router>

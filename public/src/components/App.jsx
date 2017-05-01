@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Sidebar, Menu, Icon } from 'semantic-ui-react';
-import CardContainer from '../containers/CardContainer';
+import StoreCardContainer from '../containers/StoreCardContainer';
 import TopNavbarContainer from '../containers/TopNavbarContainer';
 
 const App = ({
@@ -30,14 +30,14 @@ const App = ({
           icon='labeled'
           vertical inverted
         >
-          <CardContainer />
+          <StoreCardContainer />
           <Menu.Item as={Link} to="/" name='dashboard'>
             <Icon name='home' />
             Dashboard
             </Menu.Item>
-          <Menu.Item name='gamepad'>
-            <Icon name='gamepad' />
-            Games
+          <Menu.Item as={Link} to="/inventory" name='Inventory'>
+            <Icon name='book' />
+            Inventory
             </Menu.Item>
         </Sidebar>
         <Sidebar.Pusher>

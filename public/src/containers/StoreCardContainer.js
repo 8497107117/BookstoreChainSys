@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import Card from '../components/Card';
+import StoreCard from '../components/StoreCard';
 
 const mapStateToProps = (state) => ({
   bookstore: state.getIn(['Authentication', 'bookstore'])
@@ -8,9 +8,9 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = () => ({
 });
 
-const CardContainer = connect(
+const StoreCardContainer = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(Card);
+)(StoreCard);
 
-export default CardContainer;
+export default StoreCardContainer;

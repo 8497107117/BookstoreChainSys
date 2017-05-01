@@ -6,6 +6,9 @@ export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAIL = 'LOGIN_FAIL';
 export const LOGOUT = 'LOGOUT';
 
+//	inventory
+export const GET_INVENTORY = 'GET_INVENTORY';
+
 //	ui
 export const CLOSE_SIDEBAR = 'CLOSE_SIDEBAR';
 export const OPEN_SIDEBAR = 'OPEN_SIDEBAR';

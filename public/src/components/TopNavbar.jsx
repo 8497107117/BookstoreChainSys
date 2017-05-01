@@ -29,7 +29,7 @@ const TopNavbar = ({
         <Button icon='window maximize' onClick={fullscreenClick} />
       </Menu.Item>
       <Menu.Item name='transfer'>
-        <Button icon='envelope' />
+        <Button icon='comment outline' />
       </Menu.Item>
       <Menu.Item name='alert'>
         <Button icon='bell outline' />

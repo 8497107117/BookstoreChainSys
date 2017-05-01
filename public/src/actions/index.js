@@ -4,6 +4,7 @@ import {
 	LOGIN_SUCCESS,
 	LOGIN_FAIL,
 	LOGOUT,
+	GET_INVENTORY,
 	CLOSE_SIDEBAR,
 	OPEN_SIDEBAR
 } from './actionType';
@@ -14,6 +15,7 @@ import {
 	verifyAuth,
 	logout
 } from './authActions';
+import requestInventory from './inventoryActions';
 import switchSidebar from './uiActions';
 
 export {
@@ -22,6 +24,7 @@ export {
 	LOGIN_SUCCESS,
 	LOGIN_FAIL,
 	LOGOUT,
+	GET_INVENTORY,
 	CLOSE_SIDEBAR,
 	OPEN_SIDEBAR,
 	pristineLoginForm,
@@ -29,5 +32,6 @@ export {
 	login,
 	logout,
 	verifyAuth,
+	requestInventory,
 	switchSidebar
 };

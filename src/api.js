@@ -15,7 +15,13 @@ connection.connect((err) => {
 router.route('/authenticate')
   .post((req, res) => {
     const { store, password } = req.body;
-    connection.query('SELECT * FROM Bookstores WHERE Name = ?', [store], (err, results, fields) => {
+    const sql = 'SELECT Bookstores.id, Bookstores.Name, Bookstores.Password, Bookstores.Phone, \
+Bookstores.Address, Region.Region \
+FROM Bookstores \
+JOIN Region ON Region.id = Bookstores.Region \
+WHERE Name = ?';
+    console.log(sql);
+    connection.query(sql, [store], (err, results, fields) => {
       if (err) {
         console.log(err);
         res.json({ success: false });

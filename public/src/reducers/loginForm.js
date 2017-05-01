@@ -27,7 +27,8 @@ const loginForm = (state = initialState, action) => {
     case LOGIN_FAIL:
       return state.set(action.field, {
         status: true,
-        errMsg: action.errMsg
+        errMsg: action.errMsg,
+        value: state.get(action.field).value
       });
     default:
       return state;

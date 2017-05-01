@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import TopNavbar from '../components/TopNavbar';
-import { switchSidebar } from '../actions';
+import { switchSidebar, logout } from '../actions';
 
 const mapStateToProps = (state) => ({
   storeName: state.getIn(['Authentication', 'bookstore']).Name,
@@ -11,6 +11,24 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   sidebarClick(status) {
     dispatch(switchSidebar(status));
+  },
+  fullscreenClick() {
+    const docElm = document.documentElement;
+    if (docElm.requestFullscreen) {
+      docElm.requestFullscreen();
+    }
+    else if (docElm.mozRequestFullScreen) {
+      docElm.mozRequestFullScreen();
+    }
+    else if (docElm.webkitRequestFullScreen) {
+      docElm.webkitRequestFullScreen();
+    }
+    else if (docElm.msRequestFullscreen) {
+      docElm.msRequestFullscreen();
+    }
+  },
+  logout() {
+    dispatch(logout());
   }
 });
 

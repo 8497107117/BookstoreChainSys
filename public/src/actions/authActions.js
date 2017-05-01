@@ -3,7 +3,8 @@ import {
   PRISTINE_LOGIN_FORM,
   LOGIN_ONCHANGE,
   LOGIN_SUCCESS,
-  LOGIN_FAIL
+  LOGIN_FAIL,
+  LOGOUT
 } from './actionType';
 
 const check = ({ store, password }) => {
@@ -117,5 +118,12 @@ export const verifyAuth = () => {
         });
     }
     return { type: null };
+  };
+};
+
+export const logout = () => {
+  sessionStorage.removeItem('token');
+  return {
+    type: LOGOUT
   };
 };

@@ -3,6 +3,7 @@ import {
 	LOGIN_ONCHANGE,
 	LOGIN_SUCCESS,
 	LOGIN_FAIL,
+	LOGOUT,
 	CLOSE_SIDEBAR,
 	OPEN_SIDEBAR
 } from './actionType';
@@ -10,7 +11,8 @@ import {
 	pristineLoginForm,
 	loginOnChange,
 	login,
-	verifyAuth
+	verifyAuth,
+	logout
 } from './authActions';
 import switchSidebar from './uiActions';
 
@@ -19,11 +21,13 @@ export {
 	LOGIN_ONCHANGE,
 	LOGIN_SUCCESS,
 	LOGIN_FAIL,
+	LOGOUT,
 	CLOSE_SIDEBAR,
 	OPEN_SIDEBAR,
 	pristineLoginForm,
 	loginOnChange,
 	login,
+	logout,
 	verifyAuth,
 	switchSidebar
 };

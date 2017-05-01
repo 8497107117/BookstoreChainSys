@@ -18,11 +18,11 @@ router.route('/authenticate')
     connection.query('SELECT * FROM Bookstores WHERE Name = ?', [store], (err, results, fields) => {
       if (err) {
         console.log(err);
-        res.sendStatus(403).json({ success: false });
+        res.json({ success: false });
       }
       let bookstore = results[0];
       if (!bookstore) {
-        res.sendStatus(403).json({
+        res.json({
           success: false,
           result: [{
             field: 'store',
@@ -37,7 +37,7 @@ router.route('/authenticate')
       else {
         const hash = crypto.createHmac('sha256', config.secret).update(password).digest('hex');
         if (hash != bookstore.Password) {
-          res.sendStatus(403).json({
+          res.json({
             success: false,
             result: [{
               field: 'password',
@@ -50,7 +50,7 @@ router.route('/authenticate')
           jwt.sign(bookstore, config.secret, (err, token) => {
             if (err) {
               console.log(err);
-              res.sendStatus(403).json({
+              res.json({
                 success: false,
                 result: [{
                   field: 'store',
@@ -76,13 +76,13 @@ router.route('/authenticate')
 router.route('/verifyAuth')
   .get((req, res) => {
     if (!req.headers.authorization) {
-      res.sendStatus(403).json({ success: false });
+      res.json({ success: false });
     }
     const token = req.headers.authorization.split(' ')[1];
     jwt.verify(token, config.secret, (err, decoded) => {
       if (err) {
         console.log(err);
-        res.sendStatus(403).json({ success: false });
+        res.json({ success: false });
       }
       res.json({
         success: true,

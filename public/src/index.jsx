@@ -5,8 +5,6 @@ import { render } from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
 //  css
 import 'normalize.css/normalize.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/css/bootstrap-theme.min.css';
 import '../assets/css/index.scss';
 //  components & containers
 import {

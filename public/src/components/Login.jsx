@@ -1,11 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Form } from 'semantic-ui-react';
 import InputField from './InputField';
 
 const Login = ({ store, password, pristine, _onChange, _onSubmit }) => {
   return (
     <div id="login">
-      <form
+      <Form
+        error={store.status || password.status}
         onSubmit={
           e => {
             e.preventDefault();
@@ -51,7 +53,7 @@ const Login = ({ store, password, pristine, _onChange, _onSubmit }) => {
             className="close-btn"
           >✘  Reset</button>
         </div>
-      </form>
+      </Form>
     </div>
   );
 };

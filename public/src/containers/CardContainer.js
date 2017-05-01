@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import SideNavbar from '../components/SideNavbar';
+import Card from '../components/Card';
 
 const mapStateToProps = (state) => ({
   bookstore: state.getIn(['Authentication', 'bookstore'])
@@ -8,9 +8,9 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = () => ({
 });
 
-const SideNavbarContainer = connect(
+const CardContainer = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(SideNavbar);
+)(Card);
 
-export default SideNavbarContainer;
+export default CardContainer;

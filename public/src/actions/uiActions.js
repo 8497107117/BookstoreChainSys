@@ -22,7 +22,7 @@ const toggleOnClick = () => {
 const switchSidebar = (status) => {
   toggleOnClick();
   return {
-    type: status !== 'none' ? CLOSE_SIDEBAR : OPEN_SIDEBAR,
+    type: status ? CLOSE_SIDEBAR : OPEN_SIDEBAR,
   };
 };
 

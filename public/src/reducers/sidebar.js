@@ -3,15 +3,20 @@ import { CLOSE_SIDEBAR, OPEN_SIDEBAR } from '../actions';
 
 const initialState = Immutable.fromJS({
   buttonClass: 'is-closed',
-  overlayDisplay: 'none'
+  overlayDisplay: 'none',
+  sidebarVisible: false
 });
 
 const sidebar = (state = initialState, action) => {
   switch (action.type) {
     case CLOSE_SIDEBAR:
-      return state.set('buttonClass', 'is-closed').set('overlayDisplay', 'none');
+      return state.set('buttonClass', 'is-closed')
+        .set('overlayDisplay', 'none')
+        .set('sidebarVisible', false);
     case OPEN_SIDEBAR:
-      return state.set('buttonClass', 'is-open').set('overlayDisplay', '');
+      return state.set('buttonClass', 'is-open')
+        .set('overlayDisplay', '')
+        .set('sidebarVisible', true);
     default:
       return state;
   }

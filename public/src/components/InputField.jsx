@@ -1,20 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ControlLabel, FormGroup, FormControl, HelpBlock } from 'react-bootstrap';
+import { Form, Input, Message } from 'semantic-ui-react';
 
 const InputField = ({ id, validationState, label, errMsg, ...props }) => {
   return (
-    <FormGroup controlId={id} validationState={validationState}>
-      <ControlLabel>{label}</ControlLabel>
-      <FormControl {...props} />
-      {!!errMsg && <HelpBlock>{errMsg}</HelpBlock>}
-    </FormGroup>
+    <Form.Field error={validationState}>
+      <label htmlFor={id}>{label}</label>
+      <Input id={id} {...props} />
+      <Message error content={errMsg} />
+    </Form.Field>
   );
 };
 
 InputField.propTypes = {
   id: PropTypes.string.isRequired,
-  validationState: PropTypes.string,
+  validationState: PropTypes.bool,
   label: PropTypes.string.isRequired,
   errMsg: PropTypes.string
 };

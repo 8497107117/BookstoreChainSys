@@ -24,6 +24,7 @@ app.use((req, res, next) => {
 
 //  Static file
 app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/semantic'));
 
 //  Api Routers
 app.use('/api', api);

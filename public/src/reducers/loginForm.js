@@ -3,12 +3,12 @@ import { PRISTINE_LOGIN_FORM, LOGIN_ONCHANGE, LOGIN_FAIL } from '../actions';
 
 const initialState = Immutable.fromJS({
   store: {
-    status: null,
+    status: false,
     errMsg: '',
     value: ''
   },
   password: {
-    status: null,
+    status: false,
     errMsg: '',
     value: ''
   }
@@ -20,13 +20,13 @@ const loginForm = (state = initialState, action) => {
       return initialState;
     case LOGIN_ONCHANGE:
       return state.set(action.field, {
-        status: null,
+        status: false,
         errMsg: '',
         value: action.value
       });
     case LOGIN_FAIL:
       return state.set(action.field, {
-        status: 'error',
+        status: true,
         errMsg: action.errMsg
       });
     default:

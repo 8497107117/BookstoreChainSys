@@ -2,18 +2,11 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const http = require('http');
-const https = require('https');
-const fs = require('fs');
-const options = {
-  key: fs.readFileSync('./ssl/httpskey.pem'),
-  cert: fs.readFileSync('./ssl/httpscert.pem')
-};
 const api = require('./src/api.js');
 const indexRoute = require('./src/indexRoute.js');
 const app = express();
 
 app.set('port', process.env.PORT || 3000);
-app.set('httpsPort', 8080);
 
 //  Disable X-Powered-By Header
 app.disable('x-powered-by');
@@ -34,16 +27,14 @@ app.use((req, res, next) => {
 app.use(express.static(__dirname + '/public'));
 app.use(express.static(__dirname + '/semantic'));
 
+const server = http.createServer(app).listen(app.get('port'), () => {
+  console.log('Http server is listening on ' + app.get('port'));
+});
+
+const io = require('socket.io').listen(server);
+
 //  Api Routers
-app.use('/api', api);
+app.use('/api', api(io));
 
 //  React Routers   error routers will be resolved by React
 app.use(indexRoute);
-
-http.createServer(app).listen(app.get('port'), () => {
-  console.log('Http listening on ' + app.get('port'));
-});
-
-https.createServer(options, app).listen(app.get('httpsPort'), () => {
-  console.log('Https listening on ' + app.get('httpsPort'));
-});

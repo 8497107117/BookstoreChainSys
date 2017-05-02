@@ -9,7 +9,9 @@ const App = ({
   children,
   isAuthenticated,
   overlayStyle,
-  sidebarVisible }) => {
+  sidebarVisible,
+  sidebarClick
+ }) => {
   if (!isAuthenticated) {
     return (
       <div id="wrapper">
@@ -31,7 +33,7 @@ const App = ({
           vertical inverted
         >
           <StoreCardContainer />
-          <Menu.Item as={Link} to="/" name='dashboard'>
+          <Menu.Item as={Link} to="/" name='Dashboard'>
             <Icon name='home' />
             Dashboard
             </Menu.Item>
@@ -39,9 +41,25 @@ const App = ({
             <Icon name='book' />
             Inventory
             </Menu.Item>
+          <Menu.Item as={Link} to="/chart" name='Chart'>
+            <Icon name='bar chart' />
+            Chart
+            </Menu.Item>
+          <Menu.Item as={Link} to="/transfer" name='Transfer'>
+            <Icon name='shipping' />
+            Transfer
+            </Menu.Item>
+          <Menu.Item as={Link} to="/mocking" name='Mocking'>
+            <Icon name='barcode' />
+            Mocking
+            </Menu.Item>
         </Sidebar>
         <Sidebar.Pusher>
-          <div className="overlay" style={overlayStyle}></div>
+          <div
+            className="overlay"
+            onClick={() => { sidebarClick(sidebarVisible); }}
+            style={overlayStyle}
+          ></div>
           <TopNavbarContainer />
           <div id="content-wrapper">
             {children}
@@ -56,7 +74,8 @@ App.propTypes = {
   children: PropTypes.node.isRequired,
   isAuthenticated: PropTypes.bool.isRequired,
   overlayStyle: PropTypes.shape().isRequired,
-  sidebarVisible: PropTypes.bool.isRequired
+  sidebarVisible: PropTypes.bool.isRequired,
+  sidebarClick: PropTypes.func.isRequired,
 };
 
 App.defaultProps = {

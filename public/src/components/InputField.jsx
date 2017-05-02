@@ -20,7 +20,7 @@ InputField.propTypes = {
 };
 
 InputField.defaultProps = {
-  validationState: null,
+  validationState: false,
   errMsg: ''
 };
 

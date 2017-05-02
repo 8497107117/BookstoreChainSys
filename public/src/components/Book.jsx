@@ -10,6 +10,8 @@ const Book = ({ book }) => {
         <Card.Header>{book.Name}</Card.Header>
         <Card.Meta>
           <span>Author: {book.Author}</span>
+        </Card.Meta>
+        <Card.Meta>
           {!!book.Translator && <span>Translator: {book.Translator}</span>}
         </Card.Meta>
         <Card.Description>

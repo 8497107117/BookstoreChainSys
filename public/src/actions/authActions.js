@@ -7,6 +7,7 @@ import {
   LOGOUT
 } from './actionType';
 import requestInventory from './inventoryActions';
+import { requestBooks } from './mockingActions';
 
 const check = ({ store, password }) => {
   return new Promise((resolve, reject) => {
@@ -53,6 +54,13 @@ const loginFail = (field, errMsg) => {
   };
 };
 
+const requestThings = () => {
+  return dispatch => {
+    dispatch(requestInventory());
+    dispatch(requestBooks());
+  };
+};
+
 export const pristineLoginForm = () => {
   document.getElementById('login-store').value = '';
   document.getElementById('login-password').value = '';
@@ -86,7 +94,7 @@ export const login = (data) => {
               sessionStorage.setItem('token', token);
               dispatch(pristineLoginForm());
               dispatch(loginSuccess(result));
-              dispatch(requestInventory());
+              dispatch(requestThings());
             }
             else {
               result.forEach(({ field, errMsg }) => {
@@ -117,7 +125,7 @@ export const verifyAuth = () => {
           if (success) {
             sessionStorage.setItem('token', token);
             dispatch(loginSuccess(result));
-            dispatch(requestInventory());
+            dispatch(requestThings());
           }
         });
     }

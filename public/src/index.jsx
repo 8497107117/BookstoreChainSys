@@ -13,6 +13,7 @@ import {
   HomeContainer,
   InventoryContainer,
   LoginContainer,
+  MockingContainer,
   PrivateRouteContainer
 } from './containers';
 //  redux
@@ -28,6 +29,7 @@ render(
       <AppContainer>
         <PrivateRouteContainer exact path='/' component={HomeContainer} />
         <PrivateRouteContainer exact path='/inventory' component={InventoryContainer} />
+        <PrivateRouteContainer exact path='/mocking' component={MockingContainer} />
         <AuthRouteContainer path='/login' component={LoginContainer} />
       </AppContainer>
     </Router>

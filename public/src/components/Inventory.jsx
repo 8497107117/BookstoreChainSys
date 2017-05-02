@@ -5,7 +5,7 @@ import Book from './Book';
 
 const Inventory = ({ books }) => {
   return (
-    <Card.Group itemsPerRow={4}>
+    <Card.Group itemsPerRow={5}>
       {!!books && books.map((book) => <Book key={book.id} book={book} />)}
     </Card.Group>
   );

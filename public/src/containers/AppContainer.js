@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import App from '../components/App';
+import { switchSidebar } from '../actions';
 
 const mapStateToProps = (state) => ({
   isAuthenticated: state.getIn(['Authentication', 'isAuthenticated']),
@@ -9,7 +10,10 @@ const mapStateToProps = (state) => ({
   bookstore: state.getIn(['Authentication', 'bookstore'])
 });
 
-const mapDispatchToProps = () => ({
+const mapDispatchToProps = (dispatch) => ({
+  sidebarClick(status) {
+    dispatch(switchSidebar(status));
+  },
 });
 
 const AppContainer = connect(

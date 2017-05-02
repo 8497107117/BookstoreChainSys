@@ -5,6 +5,7 @@ const mysql = require('mysql');
 const crypto = require('crypto');
 const jwt = require('jsonwebtoken');
 const config = require('./config.js');
+const mockingApi = require('./mockingApi.js');
 const router = express.Router();
 const connection = mysql.createConnection(config.databaseConfig);
 
@@ -19,7 +20,7 @@ const inventoryApi = (io) => {
       const sql = 'SELECT B.*, Inventory.Count \
 FROM Inventory \
 JOIN Bookstores ON Bookstores.id = Inventory.Bookstore AND Inventory.Bookstore = ? \
-JOIN (SELECT Books.id, Books.Author, Books.Translator, Publishing.Publishing, Books.PublishingDate, \
+JOIN (SELECT Books.id, Books.Name, Books.Author, Books.Translator, Publishing.Publishing, Books.PublishingDate, \
 Languages.Language, Types.Type, Books.ISBN, Books.Image, Books.Price FROM Books \
 JOIN Publishing ON Publishing.id = Books.Publishing \
 JOIN Languages ON Languages.id = Books.Language \
@@ -38,6 +39,9 @@ ORDER BY B.ISBN';
         });
       });
     });
+
+  router.use('/mocking', mockingApi(io));
+
   return router;
 }
 

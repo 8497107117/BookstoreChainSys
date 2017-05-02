@@ -4,6 +4,19 @@ import {
 	LOGIN_SUCCESS,
 	LOGIN_FAIL,
 	LOGOUT,
+	GET_BOOKS,
+	SELL_BOOK,
+	SELL_BOOK_ONCHANGE,
+	SELL_COUNT_ONCHANGE,
+	PURCHASE_BOOK,
+	PURCHASE_BOOK_ONCHANGE,
+	PURCHASE_COUNT_ONCHANGE,
+	RETURN_BOOK,
+	RETURN_BOOK_ONCHANGE,
+	RETURN_COUNT_ONCHANGE,
+	REMOVE_BOOK,
+	REMOVE_BOOK_ONCHANGE,
+	CLOSE_MODAL,
 	GET_INVENTORY,
 	CLOSE_SIDEBAR,
 	OPEN_SIDEBAR
@@ -16,6 +29,20 @@ import {
 	logout
 } from './authActions';
 import requestInventory from './inventoryActions';
+import {
+	sellBook,
+	sellBookOnChange,
+	sellCountOnChange,
+	purchaseBook,
+	purchaseBookOnChange,
+	purchaseCountOnChange,
+	returnBook,
+	returnBookOnChange,
+	returnCountOnChange,
+	removeBook,
+	removeBookOnChange,
+	closeModal
+} from './mockingActions';
 import switchSidebar from './uiActions';
 
 export {
@@ -24,7 +51,20 @@ export {
 	LOGIN_SUCCESS,
 	LOGIN_FAIL,
 	LOGOUT,
+	GET_BOOKS,
 	GET_INVENTORY,
+	SELL_BOOK,
+	SELL_BOOK_ONCHANGE,
+	SELL_COUNT_ONCHANGE,
+	PURCHASE_BOOK,
+	PURCHASE_BOOK_ONCHANGE,
+	PURCHASE_COUNT_ONCHANGE,
+	RETURN_BOOK,
+	RETURN_BOOK_ONCHANGE,
+	RETURN_COUNT_ONCHANGE,
+	REMOVE_BOOK,
+	REMOVE_BOOK_ONCHANGE,
+	CLOSE_MODAL,
 	CLOSE_SIDEBAR,
 	OPEN_SIDEBAR,
 	pristineLoginForm,
@@ -33,5 +73,17 @@ export {
 	logout,
 	verifyAuth,
 	requestInventory,
+	sellBook,
+	sellBookOnChange,
+	sellCountOnChange,
+	purchaseBook,
+	purchaseBookOnChange,
+	purchaseCountOnChange,
+	returnBook,
+	returnBookOnChange,
+	returnCountOnChange,
+	removeBook,
+	removeBookOnChange,
+	closeModal,
 	switchSidebar
 };

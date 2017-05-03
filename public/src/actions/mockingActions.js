@@ -1,24 +1,28 @@
 import {
   GET_BOOKS,
-  //  SELL_BOOK,
   SELL_BOOK_ONCHANGE,
   SELL_COUNT_ONCHANGE,
-  //  PURCHASE_BOOK,
   PURCHASE_BOOK_ONCHANGE,
   PURCHASE_COUNT_ONCHANGE,
-  //  RETURN_BOOK,
   RETURN_BOOK_ONCHANGE,
   RETURN_COUNT_ONCHANGE,
-  REMOVE_BOOK,
   REMOVE_BOOK_ONCHANGE,
+  MOCK_DONE,
   CLOSE_MODAL
 } from './actionType';
 import requestInventory from './inventoryActions';
+import requestTransaction from './transactionActions';
 
 const getBooks = (books) => {
   return {
     type: GET_BOOKS,
     books
+  };
+};
+const mockDone = (msg) => {
+  return {
+    type: MOCK_DONE,
+    msg
   };
 };
 
@@ -56,8 +60,29 @@ export const sellCountOnChange = (value) => {
   };
 };
 
-export const sellBook = () => {
-
+export const sellBook = (data) => {
+  return dispatch => {
+    const token = sessionStorage.getItem('token');
+    if (token) {
+      fetch('/api/inventory/mocking/sell', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      })
+        .then(res => res.json())
+        .then(({ success, result }) => {
+          if (success) {
+            dispatch(requestInventory());
+            dispatch(requestTransaction());
+          }
+          dispatch(mockDone(result.msg));
+        });
+    }
+    return { type: null };
+  };
 };
 
 export const purchaseBookOnChange = (value) => {
@@ -74,10 +99,6 @@ export const purchaseCountOnChange = (value) => {
   };
 };
 
-export const purchaseBook = () => {
-
-};
-
 export const returnBookOnChange = (value) => {
   return {
     type: RETURN_BOOK_ONCHANGE,
@@ -92,10 +113,6 @@ export const returnCountOnChange = (value) => {
   };
 };
 
-export const returnBook = () => {
-
-};
-
 export const removeBookOnChange = (value) => {
   return {
     type: REMOVE_BOOK_ONCHANGE,
@@ -103,11 +120,11 @@ export const removeBookOnChange = (value) => {
   };
 };
 
-export const removeBook = (data) => {
+export const withPublishing = (data, operation) => {
   return dispatch => {
     const token = sessionStorage.getItem('token');
     if (token) {
-      fetch('/api/inventory/mocking/remove', {
+      fetch(`/api/inventory/mocking/${operation}`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -120,10 +137,7 @@ export const removeBook = (data) => {
           if (success) {
             dispatch(requestInventory());
           }
-          dispatch({
-            type: REMOVE_BOOK,
-            msg: result.msg
-          });
+          dispatch(mockDone(result.msg));
         });
     }
     return { type: null };

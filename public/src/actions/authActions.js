@@ -8,6 +8,7 @@ import {
 } from './actionType';
 import requestInventory from './inventoryActions';
 import { requestBooks } from './mockingActions';
+import requestTransaction from './transactionActions';
 
 const check = ({ store, password }) => {
   return new Promise((resolve, reject) => {
@@ -57,6 +58,7 @@ const loginFail = (field, errMsg) => {
 const requestThings = () => {
   return dispatch => {
     dispatch(requestInventory());
+    dispatch(requestTransaction());
     dispatch(requestBooks());
   };
 };

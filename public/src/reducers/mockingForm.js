@@ -7,8 +7,8 @@ import {
   PURCHASE_COUNT_ONCHANGE,
   RETURN_BOOK_ONCHANGE,
   RETURN_COUNT_ONCHANGE,
-  REMOVE_BOOK,
   REMOVE_BOOK_ONCHANGE,
+  MOCK_DONE,
   CLOSE_MODAL
 } from '../actions';
 
@@ -57,7 +57,7 @@ const loginForm = (state = initialState, action) => {
     case SELL_COUNT_ONCHANGE:
       return state.set('sellBook', {
         value: state.get('sellBook').value,
-        count: action.value
+        count: parseInt(action.value, 10)
       });
     case PURCHASE_BOOK_ONCHANGE:
       return state.set('purchaseBook', {
@@ -67,7 +67,7 @@ const loginForm = (state = initialState, action) => {
     case PURCHASE_COUNT_ONCHANGE:
       return state.set('purchaseBook', {
         value: state.get('purchaseBook').value,
-        count: action.value
+        count: parseInt(action.value, 10)
       });
     case RETURN_BOOK_ONCHANGE:
       return state.set('returnBook', {
@@ -77,12 +77,12 @@ const loginForm = (state = initialState, action) => {
     case RETURN_COUNT_ONCHANGE:
       return state.set('returnBook', {
         value: state.get('returnBook').value,
-        count: action.value
+        count: parseInt(action.value, 10)
       });
-    case REMOVE_BOOK:
-      return state.set('msg', action.msg).set('modalOpen', true);
     case REMOVE_BOOK_ONCHANGE:
       return state.set('removeBook', { value: action.value });
+    case MOCK_DONE:
+      return state.set('msg', action.msg).set('modalOpen', true);
     case CLOSE_MODAL:
       return state.set('msg', '').set('modalOpen', false);
     default:

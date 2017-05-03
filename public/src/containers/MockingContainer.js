@@ -4,14 +4,12 @@ import {
   sellBook,
   sellBookOnChange,
   sellCountOnChange,
-  purchaseBook,
   purchaseBookOnChange,
   purchaseCountOnChange,
-  returnBook,
   returnBookOnChange,
   returnCountOnChange,
-  removeBook,
   removeBookOnChange,
+  withPublishing,
   closeModal
 } from '../actions';
 
@@ -37,7 +35,7 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(sellCountOnChange(value));
   },
   purchaseBook(data) {
-    dispatch(purchaseBook(data));
+    dispatch(withPublishing(data, 'purchase'));
   },
   purchaseBookOnChange(e, { value }) {
     dispatch(purchaseBookOnChange(value));
@@ -46,7 +44,7 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(purchaseCountOnChange(value));
   },
   returnBook(data) {
-    dispatch(returnBook(data));
+    dispatch(withPublishing(data, 'return'));
   },
   returnBookOnChange(e, { value }) {
     dispatch(returnBookOnChange(value));
@@ -55,7 +53,7 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(returnCountOnChange(value));
   },
   removeBook(data) {
-    dispatch(removeBook(data));
+    dispatch(withPublishing(data, 'remove'));
   },
   removeBookOnChange(e, { value }) {
     dispatch(removeBookOnChange(value));

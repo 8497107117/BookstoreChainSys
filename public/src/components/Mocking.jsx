@@ -28,7 +28,7 @@ const Mocking = ({
     <Grid columns='equal'>
       <Grid.Column>
         <Modal open={modalOpen} basic size='small'>
-          <Modal.Header icon='archive' content={msg} />
+          <Modal.Header icon='book' content={msg} />
           <Modal.Actions>
             <Button
               color='green'

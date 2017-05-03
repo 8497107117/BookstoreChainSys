@@ -1,9 +1,9 @@
 import { GET_TRANSACTION } from './actionType';
 
-const getTransaction = (books) => {
+const getTransaction = (transaction) => {
   return {
     type: GET_TRANSACTION,
-    books
+    transaction
   };
 };
 
@@ -19,7 +19,7 @@ const requestTransaction = () => {
         .then(res => res.json())
         .then(({ success, result }) => {
           if (success) {
-            dispatch(getTransaction(result));
+            dispatch(getTransaction(result.transaction));
           }
         });
     }

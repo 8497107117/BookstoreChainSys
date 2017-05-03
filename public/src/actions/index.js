@@ -15,7 +15,7 @@ import {
 	RETURN_COUNT_ONCHANGE,
 	REMOVE_BOOK_ONCHANGE,
 	MOCK_DONE,
-	CLOSE_MODAL,
+	CLOSE_DIMMER,
 	CLOSE_SIDEBAR,
 	OPEN_SIDEBAR
 } from './actionType';
@@ -37,7 +37,7 @@ import {
 	returnCountOnChange,
 	removeBookOnChange,
 	withPublishing,
-	closeModal
+	closeDimmer
 } from './mockingActions';
 import switchSidebar from './uiActions';
 
@@ -58,7 +58,7 @@ export {
 	RETURN_COUNT_ONCHANGE,
 	REMOVE_BOOK_ONCHANGE,
 	MOCK_DONE,
-	CLOSE_MODAL,
+	CLOSE_DIMMER,
 	CLOSE_SIDEBAR,
 	OPEN_SIDEBAR,
 	pristineLoginForm,
@@ -76,6 +76,6 @@ export {
 	returnCountOnChange,
 	removeBookOnChange,
 	withPublishing,
-	closeModal,
+	closeDimmer,
 	switchSidebar
 };

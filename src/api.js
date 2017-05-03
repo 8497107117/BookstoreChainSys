@@ -6,6 +6,8 @@ const crypto = require('crypto');
 const jwt = require('jsonwebtoken');
 const config = require('./config.js');
 const inventoryApi = require('./inventoryApi.js');
+const mockingApi = require('./mockingApi.js');
+const transactionApi = require('./transactionApi.js');
 const router = express.Router();
 const connection = mysql.createConnection(config.databaseConfig);
 
@@ -119,7 +121,9 @@ WHERE Name = ?';
     }
   });
 
-  router.use('/inventory', inventoryApi(io));
+  router.use('/inventory', inventoryApi);
+  router.use('/mocking', mockingApi);
+  router.use('/transaction', transactionApi);
 
   return router;
 };

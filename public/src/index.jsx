@@ -10,11 +10,11 @@ import '../assets/css/index.scss';
 import {
   AppContainer,
   AuthRouteContainer,
-  HomeContainer,
   InventoryContainer,
   LoginContainer,
   MockingContainer,
-  PrivateRouteContainer
+  PrivateRouteContainer,
+  TransactionContainer
 } from './containers';
 //  redux
 import store from './store';
@@ -27,7 +27,7 @@ render(
   <Provider store={store}>
     <Router>
       <AppContainer>
-        <PrivateRouteContainer exact path='/' component={HomeContainer} />
+        <PrivateRouteContainer exact path='/' component={TransactionContainer} />
         <PrivateRouteContainer exact path='/inventory' component={InventoryContainer} />
         <PrivateRouteContainer exact path='/mocking' component={MockingContainer} />
         <AuthRouteContainer path='/login' component={LoginContainer} />

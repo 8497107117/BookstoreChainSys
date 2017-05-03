@@ -34,8 +34,8 @@ const App = ({
         >
           <StoreCardContainer />
           <Menu.Item as={Link} to="/" name='Dashboard'>
-            <Icon name='home' />
-            Dashboard
+            <Icon name='in cart' />
+            Transaction
             </Menu.Item>
           <Menu.Item as={Link} to="/inventory" name='Inventory'>
             <Icon name='book' />

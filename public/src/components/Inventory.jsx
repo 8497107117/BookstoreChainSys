@@ -1,13 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Card } from 'semantic-ui-react';
+import { Card, Grid } from 'semantic-ui-react';
 import Book from './Book';
 
 const Inventory = ({ books }) => {
   return (
-    <Card.Group itemsPerRow={5}>
-      {!!books && books.map((book) => <Book key={book.id} book={book} />)}
-    </Card.Group>
+    <Grid columns='equal'>
+      <Grid.Column>
+      </Grid.Column>
+      <Grid.Column width={12}>
+        <Card.Group itemsPerRow={5}>
+          {!!books && books.map((book) => <Book key={book.id} book={book} />)}
+        </Card.Group>
+      </Grid.Column>
+      <Grid.Column>
+      </Grid.Column>
+    </Grid>
   );
 };
 

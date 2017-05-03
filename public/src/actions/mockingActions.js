@@ -8,7 +8,7 @@ import {
   RETURN_COUNT_ONCHANGE,
   REMOVE_BOOK_ONCHANGE,
   MOCK_DONE,
-  CLOSE_MODAL
+  CLOSE_DIMMER
 } from './actionType';
 import requestInventory from './inventoryActions';
 import requestTransaction from './transactionActions';
@@ -30,7 +30,7 @@ export const requestBooks = () => {
   return dispatch => {
     const token = sessionStorage.getItem('token');
     if (token) {
-      fetch('/api/inventory/mocking/books', {
+      fetch('/api/mocking/books', {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -64,7 +64,7 @@ export const sellBook = (data) => {
   return dispatch => {
     const token = sessionStorage.getItem('token');
     if (token) {
-      fetch('/api/inventory/mocking/sell', {
+      fetch('/api/mocking/sell', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -124,7 +124,7 @@ export const withPublishing = (data, operation) => {
   return dispatch => {
     const token = sessionStorage.getItem('token');
     if (token) {
-      fetch(`/api/inventory/mocking/${operation}`, {
+      fetch(`/api/mocking/${operation}`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -144,8 +144,8 @@ export const withPublishing = (data, operation) => {
   };
 };
 
-export const closeModal = () => {
+export const closeDimmer = () => {
   return {
-    type: CLOSE_MODAL
+    type: CLOSE_DIMMER
   };
 };

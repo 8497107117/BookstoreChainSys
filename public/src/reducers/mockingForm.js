@@ -9,7 +9,7 @@ import {
   RETURN_COUNT_ONCHANGE,
   REMOVE_BOOK_ONCHANGE,
   MOCK_DONE,
-  CLOSE_MODAL
+  CLOSE_DIMMER
 } from '../actions';
 
 const reviseBookInfo = (books) => {
@@ -42,7 +42,7 @@ const initialState = Immutable.fromJS({
     value: null
   },
   msg: '',
-  modalOpen: false
+  dimmerOpen: false
 });
 
 const loginForm = (state = initialState, action) => {
@@ -82,9 +82,9 @@ const loginForm = (state = initialState, action) => {
     case REMOVE_BOOK_ONCHANGE:
       return state.set('removeBook', { value: action.value });
     case MOCK_DONE:
-      return state.set('msg', action.msg).set('modalOpen', true);
-    case CLOSE_MODAL:
-      return state.set('msg', '').set('modalOpen', false);
+      return state.set('msg', action.msg).set('dimmerOpen', true);
+    case CLOSE_DIMMER:
+      return state.set('msg', '').set('dimmerOpen', false);
     default:
       return state;
   }

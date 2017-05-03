@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal, Grid, Label, Button, Dropdown, Form, Icon, Input } from 'semantic-ui-react';
+import { Dimmer, Header, Grid, Label, Button, Dropdown, Form, Icon, Input } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 
 const Mocking = ({
@@ -10,7 +10,7 @@ const Mocking = ({
   returnBookData,
   removeBookData,
   msg,
-  modalOpen,
+  dimmerOpen,
   sellBook,
   sellBookOnChange,
   sellCountOnChange,
@@ -22,21 +22,21 @@ const Mocking = ({
   returnCountOnChange,
   removeBook,
   removeBookOnChange,
-  closeModal
+  closeDimmer
 }) => {
   return (
     <Grid columns='equal'>
       <Grid.Column>
-        <Modal open={modalOpen} basic size='small'>
-          <Modal.Header icon='book' content={msg} />
-          <Modal.Actions>
-            <Button
-              color='green'
-              inverted
-              onClick={closeModal}
-            ><Icon name='checkmark' /> OK</Button>
-          </Modal.Actions>
-        </Modal>
+        <Dimmer
+          active={dimmerOpen}
+          onClickOutside={closeDimmer}
+          page
+        >
+          <Header as='h2' icon inverted>
+            <Icon name='book' />
+            {msg}
+          </Header>
+        </Dimmer>
       </Grid.Column>
       <Grid.Column width={3}>
         <Form
@@ -179,7 +179,7 @@ Mocking.propTypes = {
   returnBookData: PropTypes.shape(),
   removeBookData: PropTypes.shape(),
   msg: PropTypes.string.isRequired,
-  modalOpen: PropTypes.bool.isRequired,
+  dimmerOpen: PropTypes.bool.isRequired,
   sellBook: PropTypes.func.isRequired,
   sellBookOnChange: PropTypes.func.isRequired,
   sellCountOnChange: PropTypes.func.isRequired,
@@ -191,7 +191,7 @@ Mocking.propTypes = {
   returnCountOnChange: PropTypes.func.isRequired,
   removeBook: PropTypes.func.isRequired,
   removeBookOnChange: PropTypes.func.isRequired,
-  closeModal: PropTypes.func.isRequired
+  closeDimmer: PropTypes.func.isRequired
 };
 
 Mocking.defaultProps = {

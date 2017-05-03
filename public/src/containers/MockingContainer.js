@@ -10,7 +10,7 @@ import {
   returnCountOnChange,
   removeBookOnChange,
   withPublishing,
-  closeModal
+  closeDimmer
 } from '../actions';
 
 const mapStateToProps = (state) => ({
@@ -21,7 +21,7 @@ const mapStateToProps = (state) => ({
   returnBookData: state.getIn(['mockingForm', 'returnBook']),
   removeBookData: state.getIn(['mockingForm', 'removeBook']),
   msg: state.getIn(['mockingForm', 'msg']),
-  modalOpen: state.getIn(['mockingForm', 'modalOpen'])
+  dimmerOpen: state.getIn(['mockingForm', 'dimmerOpen'])
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -58,9 +58,9 @@ const mapDispatchToProps = (dispatch) => ({
   removeBookOnChange(e, { value }) {
     dispatch(removeBookOnChange(value));
   },
-  closeModal(e) {
+  closeDimmer(e) {
     e.preventDefault();
-    dispatch(closeModal());
+    dispatch(closeDimmer());
   }
 });
 

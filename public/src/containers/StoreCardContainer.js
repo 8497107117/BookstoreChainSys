@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import StoreCard from '../components/StoreCard';
 
 const mapStateToProps = (state) => ({
-  bookstore: state.getIn(['Authentication', 'bookstore'])
+  bookstore: state.getIn(['Authentication', 'bookstore']).toObject()
 });
 
 const mapDispatchToProps = () => ({

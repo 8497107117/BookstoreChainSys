@@ -3,8 +3,8 @@ import Login from '../components/Login';
 import { pristineLoginForm, loginOnChange, login } from '../actions';
 
 const mapStateToProps = (state) => ({
-  store: state.getIn(['loginForm', 'store']),
-  password: state.getIn(['loginForm', 'password'])
+  store: state.getIn(['loginForm', 'store']).toObject(),
+  password: state.getIn(['loginForm', 'password']).toObject()
 });
 
 const mapDispatchToProps = (dispatch) => ({

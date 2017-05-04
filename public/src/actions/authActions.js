@@ -6,7 +6,7 @@ import {
   LOGIN_FAIL,
   LOGOUT
 } from './actionType';
-import requestInventory from './inventoryActions';
+import { requestInventory } from './inventoryActions';
 import { requestBooks } from './mockingActions';
 import requestTransaction from './transactionActions';
 

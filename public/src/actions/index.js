@@ -17,7 +17,8 @@ import {
 	MOCK_DONE,
 	CLOSE_DIMMER,
 	CLOSE_SIDEBAR,
-	OPEN_SIDEBAR
+	OPEN_SIDEBAR,
+	SET_FILTER_INVENTORY_BOOKS
 } from './actionType';
 import {
 	pristineLoginForm,
@@ -26,7 +27,7 @@ import {
 	verifyAuth,
 	logout
 } from './authActions';
-import requestInventory from './inventoryActions';
+import { setFilterInventoryBooks, requestInventory } from './inventoryActions';
 import {
 	sellBook,
 	sellBookOnChange,
@@ -61,11 +62,13 @@ export {
 	CLOSE_DIMMER,
 	CLOSE_SIDEBAR,
 	OPEN_SIDEBAR,
+	SET_FILTER_INVENTORY_BOOKS,
 	pristineLoginForm,
 	loginOnChange,
 	login,
 	logout,
 	verifyAuth,
+	setFilterInventoryBooks,
 	requestInventory,
 	sellBook,
 	sellBookOnChange,

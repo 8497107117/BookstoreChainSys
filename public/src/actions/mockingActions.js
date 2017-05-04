@@ -10,7 +10,7 @@ import {
   MOCK_DONE,
   CLOSE_DIMMER
 } from './actionType';
-import requestInventory from './inventoryActions';
+import { requestInventory } from './inventoryActions';
 import requestTransaction from './transactionActions';
 
 const getBooks = (books) => {

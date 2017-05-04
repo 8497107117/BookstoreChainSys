@@ -27,3 +27,6 @@ export const CLOSE_DIMMER = 'CLOSE_DIMMER';
 //	ui
 export const CLOSE_SIDEBAR = 'CLOSE_SIDEBAR';
 export const OPEN_SIDEBAR = 'OPEN_SIDEBAR';
+
+//	filter
+export const SET_FILTER_INVENTORY_BOOKS = 'SET_FILTER_INVENTORY_BOOKS';

@@ -1,4 +1,4 @@
-import { GET_INVENTORY } from './actionType';
+import { GET_INVENTORY, SET_FILTER_INVENTORY_BOOKS } from './actionType';
 
 const getInventory = (books) => {
   return {
@@ -7,7 +7,14 @@ const getInventory = (books) => {
   };
 };
 
-const requestInventory = () => {
+export const setFilterInventoryBooks = (filterValue) => {
+  return {
+    type: SET_FILTER_INVENTORY_BOOKS,
+    filterValue
+  };
+};
+
+export const requestInventory = () => {
   return dispatch => {
     const token = sessionStorage.getItem('token');
     if (token) {
@@ -26,5 +33,3 @@ const requestInventory = () => {
     return { type: null };
   };
 };
-
-export default requestInventory;

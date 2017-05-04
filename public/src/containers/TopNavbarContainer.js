@@ -1,11 +1,13 @@
 import { connect } from 'react-redux';
+import { push } from 'react-router-redux';
 import TopNavbar from '../components/TopNavbar';
-import { switchSidebar, logout } from '../actions';
+import { switchSidebar, logout, setFilterInventoryBooks } from '../actions';
 
 const mapStateToProps = (state) => ({
-  storeName: state.getIn(['Authentication', 'bookstore']).Name,
+  storeName: state.getIn(['Authentication', 'bookstore', 'Name']),
   sidebarButtonClass: `sidebar-button ${state.getIn(['sidebar', 'buttonClass'])}`,
-  sidebarVisible: state.getIn(['sidebar', 'sidebarVisible'])
+  sidebarVisible: state.getIn(['sidebar', 'sidebarVisible']),
+  alertCount: state.getIn(['inventory', 'alertCount'])
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -26,6 +28,13 @@ const mapDispatchToProps = (dispatch) => ({
     else if (docElm.msRequestFullscreen) {
       docElm.msRequestFullscreen();
     }
+  },
+  alertClick(e) {
+    e.preventDefault();
+    dispatch(setFilterInventoryBooks(true));
+    dispatch(push({
+      pathname: '/inventory'
+    }));
   },
   logout() {
     dispatch(logout());

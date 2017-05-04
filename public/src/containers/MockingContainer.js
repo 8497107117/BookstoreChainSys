@@ -14,12 +14,12 @@ import {
 } from '../actions';
 
 const mapStateToProps = (state) => ({
-  displayBooks: state.getIn(['mockingForm', 'displayBooks']),
-  displayInventoryBooks: state.getIn(['inventory', 'displayBooks']),
-  sellBookData: state.getIn(['mockingForm', 'sellBook']),
-  purchaseBookData: state.getIn(['mockingForm', 'purchaseBook']),
-  returnBookData: state.getIn(['mockingForm', 'returnBook']),
-  removeBookData: state.getIn(['mockingForm', 'removeBook']),
+  displayBooks: state.getIn(['mockingForm', 'displayBooks']).toArray(),
+  displayInventoryBooks: state.getIn(['inventory', 'displayBooks']).toArray(),
+  sellBookData: state.getIn(['mockingForm', 'sellBook']).toObject(),
+  purchaseBookData: state.getIn(['mockingForm', 'purchaseBook']).toObject(),
+  returnBookData: state.getIn(['mockingForm', 'returnBook']).toObject(),
+  removeBookData: state.getIn(['mockingForm', 'removeBook']).toObject(),
   msg: state.getIn(['mockingForm', 'msg']),
   dimmerOpen: state.getIn(['mockingForm', 'dimmerOpen'])
 });

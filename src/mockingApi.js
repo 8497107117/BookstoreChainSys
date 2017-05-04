@@ -33,7 +33,7 @@ router.route('/books')
 router.route('/sell')
   .post((req, res) => {
     const { bookstore, body: { value, count } } = req;
-    const sql = 'UPDATE Inventory SET Count = Count - ? WHERE Bookstore = ? AND Book = ? AND Count >= ?';
+    let sql = 'UPDATE Inventory SET Count = Count - ? WHERE Bookstore = ? AND Book = ? AND Count >= ?';
     connection.query(sql, [count, bookstore.id, value, count], (err, result, fields) => {
       if (err || !result.changedRows) {
         console.log(err);
@@ -45,11 +45,23 @@ router.route('/sell')
         });
       }
       else {
-        res.json({
-          success: true,
-          result: {
-            msg: 'Sell Book Success'
+        sql = 'INSERT INTO Transaction (Bookstore, Book, Count, Time) VALUES(?, ?, ?, ?)';
+        connection.query(sql, [bookstore.id, value, count, new Date()], (err, result, fields) => {
+          if (err) {
+            console.log(err);
+            res.json({
+              success: false,
+              result: {
+                msg: 'Sell Book Fail'
+              }
+            });
           }
+          res.json({
+            success: true,
+            result: {
+              msg: 'Sell Book Success'
+            }
+          });
         });
       }
     });

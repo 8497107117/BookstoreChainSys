@@ -1,13 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Menu, Button } from 'semantic-ui-react';
+import { Menu, Button, Label } from 'semantic-ui-react';
 
 const TopNavbar = ({
   storeName,
   sidebarButtonClass,
   sidebarVisible,
+  alertCount,
   sidebarClick,
   fullscreenClick,
+  alertClick,
   logout
     }) => {
   return (
@@ -32,7 +34,8 @@ const TopNavbar = ({
         <Button icon='comment outline' />
       </Menu.Item>
       <Menu.Item name='alert'>
-        <Button icon='bell outline' />
+        <Button icon='bell outline' onClick={alertClick} />
+        {alertCount > 0 && <Label color='red' floating circular>{alertCount}</Label>}
       </Menu.Item>
       <Menu.Item name='logout' onClick={logout}>
         <Button icon='shutdown' />
@@ -45,8 +48,10 @@ TopNavbar.propTypes = {
   storeName: PropTypes.string.isRequired,
   sidebarButtonClass: PropTypes.string.isRequired,
   sidebarVisible: PropTypes.bool.isRequired,
+  alertCount: PropTypes.number.isRequired,
   sidebarClick: PropTypes.func.isRequired,
   fullscreenClick: PropTypes.func.isRequired,
+  alertClick: PropTypes.func.isRequired,
   logout: PropTypes.func.isRequired
 };
 

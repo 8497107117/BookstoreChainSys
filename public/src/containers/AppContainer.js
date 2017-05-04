@@ -7,7 +7,7 @@ const mapStateToProps = (state) => ({
   isAuthenticated: state.getIn(['Authentication', 'isAuthenticated']),
   overlayStyle: { display: state.getIn(['sidebar', 'overlayDisplay']) },
   sidebarVisible: state.getIn(['sidebar', 'sidebarVisible']),
-  bookstore: state.getIn(['Authentication', 'bookstore'])
+  bookstore: state.getIn(['Authentication', 'bookstore']).toObject()
 });
 
 const mapDispatchToProps = (dispatch) => ({

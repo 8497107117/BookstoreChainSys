@@ -2,7 +2,8 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import { render } from 'react-dom';
-import { BrowserRouter as Router } from 'react-router-dom';
+import createHistory from 'history/createBrowserHistory';
+import { ConnectedRouter } from 'react-router-redux';
 //  css
 import 'normalize.css/normalize.css';
 import '../assets/css/index.scss';
@@ -17,22 +18,25 @@ import {
   TransactionContainer
 } from './containers';
 //  redux
-import store from './store';
+import creatStore from './store';
 //  actions
 import { verifyAuth } from './actions';
+
+const history = createHistory();
+const store = creatStore(history);
 
 store.dispatch(verifyAuth());
 
 render(
   <Provider store={store}>
-    <Router>
+    <ConnectedRouter history={history}>
       <AppContainer>
         <PrivateRouteContainer exact path='/' component={TransactionContainer} />
         <PrivateRouteContainer exact path='/inventory' component={InventoryContainer} />
         <PrivateRouteContainer exact path='/mocking' component={MockingContainer} />
         <AuthRouteContainer path='/login' component={LoginContainer} />
       </AppContainer>
-    </Router>
+    </ConnectedRouter>
   </Provider>,
   document.getElementById('app')
 );

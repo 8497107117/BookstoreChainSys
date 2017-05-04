@@ -1,4 +1,4 @@
-import Immutable from 'immutable';
+import Immutable, { List } from 'immutable';
 import {
   GET_BOOKS,
   SELL_BOOK_ONCHANGE,
@@ -24,8 +24,8 @@ const reviseBookInfo = (books) => {
 };
 
 const initialState = Immutable.fromJS({
-  books: null,
-  displayBooks: null,
+  books: [],
+  displayBooks: [],
   sellBook: {
     value: null,
     count: null
@@ -48,39 +48,21 @@ const initialState = Immutable.fromJS({
 const loginForm = (state = initialState, action) => {
   switch (action.type) {
     case GET_BOOKS:
-      return state.set('books', action.books).set('displayBooks', reviseBookInfo(action.books));
+      return state.set('books', List(action.books)).set('displayBooks', List(reviseBookInfo(action.books)));
     case SELL_BOOK_ONCHANGE:
-      return state.set('sellBook', {
-        value: action.value,
-        count: state.get('sellBook').count
-      });
+      return state.setIn(['sellBook', 'value'], action.value);
     case SELL_COUNT_ONCHANGE:
-      return state.set('sellBook', {
-        value: state.get('sellBook').value,
-        count: parseInt(action.value, 10)
-      });
+      return state.setIn(['sellBook', 'count'], parseInt(action.value, 10));
     case PURCHASE_BOOK_ONCHANGE:
-      return state.set('purchaseBook', {
-        value: action.value,
-        count: state.get('purchaseBook').count
-      });
+      return state.setIn(['purchaseBook', 'value'], action.value);
     case PURCHASE_COUNT_ONCHANGE:
-      return state.set('purchaseBook', {
-        value: state.get('purchaseBook').value,
-        count: parseInt(action.value, 10)
-      });
+      return state.setIn(['purchaseBook', 'count'], parseInt(action.value, 10));
     case RETURN_BOOK_ONCHANGE:
-      return state.set('returnBook', {
-        value: action.value,
-        count: state.get('returnBook').count
-      });
+      return state.setIn(['returnBook', 'value'], action.value);
     case RETURN_COUNT_ONCHANGE:
-      return state.set('returnBook', {
-        value: state.get('returnBook').value,
-        count: parseInt(action.value, 10)
-      });
+      return state.setIn(['returnBook', 'count'], parseInt(action.value, 10));
     case REMOVE_BOOK_ONCHANGE:
-      return state.set('removeBook', { value: action.value });
+      return state.setIn(['removeBook', 'value'], action.value);
     case MOCK_DONE:
       return state.set('msg', action.msg).set('dimmerOpen', true);
     case CLOSE_DIMMER:

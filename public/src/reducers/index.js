@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux-immutable';
+import { routerReducer } from 'react-router-redux';
 import Authentication from './Authentication';
 import inventory from './inventory';
 import loginForm from './loginForm';
@@ -12,7 +13,8 @@ const reducers = combineReducers({
   loginForm,
   mockingForm,
   sidebar,
-  transaction
+  transaction,
+  router: routerReducer
 });
 
 export default reducers;

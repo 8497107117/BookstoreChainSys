@@ -15,11 +15,11 @@ connection.connect((err) => {
 router.route('/')
   .get((req, res) => {
     const { bookstore } = req;
-    const sql = 'SELECT B.*, Inventory.Count \
-FROM Inventory \
+    const sql = 'SELECT B.*, Inventory.Count FROM Inventory \
 JOIN Bookstores ON Bookstores.id = Inventory.Bookstore AND Inventory.Bookstore = ? \
-JOIN (SELECT Books.id, Books.Name, Books.Author, Books.Translator, Publishing.Publishing, Books.PublishingDate, \
-Languages.Language, Types.Type, Books.ISBN, Books.Image, Books.Price FROM Books \
+JOIN (SELECT Books.id, Books.Name, Books.Author, Books.Translator, Publishing.Name as PublishingName, \
+Publishing.Phone as PublishingPhone, Books.PublishingDate, Languages.Language, Types.Type, Books.ISBN, \
+Books.Image, Books.Price FROM Books \
 JOIN Publishing ON Publishing.id = Books.Publishing \
 JOIN Languages ON Languages.id = Books.Language \
 JOIN Types ON Types.id = Books.Type) as B ON B.id = Inventory.Book \

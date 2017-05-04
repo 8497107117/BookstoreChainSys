@@ -31,8 +31,8 @@ render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
       <AppContainer>
-        <PrivateRouteContainer exact path='/' component={TransactionContainer} />
-        <PrivateRouteContainer exact path='/inventory' component={InventoryContainer} />
+        <PrivateRouteContainer exact path='/' component={InventoryContainer} />
+        <PrivateRouteContainer exact path='/transaction' component={TransactionContainer} />
         <PrivateRouteContainer exact path='/mocking' component={MockingContainer} />
         <AuthRouteContainer path='/login' component={LoginContainer} />
       </AppContainer>

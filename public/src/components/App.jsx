@@ -33,21 +33,21 @@ const App = ({
           vertical inverted
         >
           <StoreCardContainer />
-          <Menu.Item as={Link} to="/" name='Dashboard'>
-            <Icon name='in cart' />
-            Transaction
-            </Menu.Item>
-          <Menu.Item as={Link} to="/inventory" name='Inventory'>
+          <Menu.Item as={Link} to="/" name='Inventory'>
             <Icon name='book' />
             Inventory
-            </Menu.Item>
-          <Menu.Item as={Link} to="/chart" name='Chart'>
-            <Icon name='bar chart' />
-            Chart
             </Menu.Item>
           <Menu.Item as={Link} to="/transfer" name='Transfer'>
             <Icon name='shipping' />
             Transfer
+            </Menu.Item>
+          <Menu.Item as={Link} to="/transaction" name='Transation'>
+            <Icon name='in cart' />
+            Transaction
+            </Menu.Item>
+          <Menu.Item as={Link} to="/chart" name='Chart'>
+            <Icon name='bar chart' />
+            Chart
             </Menu.Item>
           <Menu.Item as={Link} to="/mocking" name='Mocking'>
             <Icon name='barcode' />

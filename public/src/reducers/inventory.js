@@ -1,5 +1,5 @@
-import Immutable, { fromJS, List } from 'immutable';
-import { GET_INVENTORY, SET_FILTER_INVENTORY_BOOKS } from '../actions';
+import Immutable, { List } from 'immutable';
+import { GET_INVENTORY, SET_FILTER_INVENTORY_ALERT, INVENTORY_SEARCH_ONCHANGE } from '../actions';
 
 const reviseBookInfo = (books) => {
   let revisedBooks = [];
@@ -19,7 +19,7 @@ const monitorAlert = (books) => {
     if (book.Count < 5) {
       alertCount += 1;
     }
-    revisedBooks.push(Object.assign({}, book, { alert: book.Count < 5 }));
+    revisedBooks.push({ ...book, alert: book.Count < 5 });
   });
   return {
     books: revisedBooks,
@@ -31,7 +31,8 @@ const initialState = Immutable.fromJS({
   books: [],
   displayBooks: [],
   filters: {
-    showAlert: false
+    showAlert: false,
+    search: ''
   },
   alertCount: 0
 });
@@ -42,10 +43,10 @@ const inventory = (state = initialState, action) => {
       const books = monitorAlert(action.books);
       return state.set('books', List(books.books)).set('alertCount', books.alertCount)
         .set('displayBooks', List(reviseBookInfo(books.books)));
-    case SET_FILTER_INVENTORY_BOOKS:
-      return state.set('filters', fromJS({
-        showAlert: action.filterValue
-      }));
+    case SET_FILTER_INVENTORY_ALERT:
+      return state.setIn(['filters', 'showAlert'], action.filterValue);
+    case INVENTORY_SEARCH_ONCHANGE:
+      return state.setIn(['filters', 'search'], action.searchValue);
     default:
       return state;
   }

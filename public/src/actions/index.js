@@ -18,7 +18,8 @@ import {
 	CLOSE_DIMMER,
 	CLOSE_SIDEBAR,
 	OPEN_SIDEBAR,
-	SET_FILTER_INVENTORY_BOOKS
+	SET_FILTER_INVENTORY_ALERT,
+	INVENTORY_SEARCH_ONCHANGE
 } from './actionType';
 import {
 	pristineLoginForm,
@@ -27,7 +28,7 @@ import {
 	verifyAuth,
 	logout
 } from './authActions';
-import { setFilterInventoryBooks, requestInventory } from './inventoryActions';
+import { setFilterInventoryBooks, searchInventory, requestInventory } from './inventoryActions';
 import {
 	sellBook,
 	sellBookOnChange,
@@ -62,13 +63,15 @@ export {
 	CLOSE_DIMMER,
 	CLOSE_SIDEBAR,
 	OPEN_SIDEBAR,
-	SET_FILTER_INVENTORY_BOOKS,
+	SET_FILTER_INVENTORY_ALERT,
+	INVENTORY_SEARCH_ONCHANGE,
 	pristineLoginForm,
 	loginOnChange,
 	login,
 	logout,
 	verifyAuth,
 	setFilterInventoryBooks,
+	searchInventory,
 	requestInventory,
 	sellBook,
 	sellBookOnChange,

@@ -1,14 +1,27 @@
 import { connect } from 'react-redux';
-import { setFilterInventoryBooks } from '../actions';
+import { setFilterInventoryBooks, searchInventory } from '../actions';
 import Inventory from '../components/Inventory';
+
+const searchBooks = (search) => {
+  return (book) => {
+    return Object.keys(book).reduce((has, key) => {
+      if (key === 'Author' || key === 'ISBN' || key === 'Name' || key === 'PublishingName' || key === 'Translator') {
+        return book[key] ? has || book[key].includes(search) : has;
+      }
+      return has;
+    }, false);
+  };
+};
 
 const booksFilter = (books, filters) => {
   let filtedBooks = books;
   filters.forEach((filterValue, filter) => {
     switch (filter) {
       case 'showAlert':
-        filtedBooks = books.filter(book => !filterValue || book.alert);
+        filtedBooks = filtedBooks.filter(book => !filterValue || book.alert);
         break;
+      case 'search':
+        filtedBooks = filtedBooks.filter(searchBooks(filterValue));
       default:
         break;
     }
@@ -18,13 +31,18 @@ const booksFilter = (books, filters) => {
 
 const mapStateToProps = (state) => ({
   books: booksFilter(state.getIn(['inventory', 'books']), state.getIn(['inventory', 'filters'])).toArray(),
-  alertFilter: state.getIn(['inventory', 'filters', 'showAlert'])
+  alertFilter: state.getIn(['inventory', 'filters', 'showAlert']),
+  searchValue: state.getIn(['inventory', 'filters', 'search'])
 });
 
 const mapDispatchToProps = (dispatch) => ({
   setAlertFilter(e, { checked }) {
     e.preventDefault();
     dispatch(setFilterInventoryBooks(checked));
+  },
+  search(e, { value }) {
+    e.preventDefault();
+    dispatch(searchInventory(value));
   }
 });
 

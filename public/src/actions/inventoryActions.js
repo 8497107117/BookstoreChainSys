@@ -1,4 +1,4 @@
-import { GET_INVENTORY, SET_FILTER_INVENTORY_BOOKS } from './actionType';
+import { GET_INVENTORY, SET_FILTER_INVENTORY_ALERT, INVENTORY_SEARCH_ONCHANGE } from './actionType';
 
 const getInventory = (books) => {
   return {
@@ -9,8 +9,15 @@ const getInventory = (books) => {
 
 export const setFilterInventoryBooks = (filterValue) => {
   return {
-    type: SET_FILTER_INVENTORY_BOOKS,
+    type: SET_FILTER_INVENTORY_ALERT,
     filterValue
+  };
+};
+
+export const searchInventory = (searchValue) => {
+  return {
+    type: INVENTORY_SEARCH_ONCHANGE,
+    searchValue
   };
 };
 

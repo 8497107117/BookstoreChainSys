@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Card, Checkbox, Grid } from 'semantic-ui-react';
+import { Input, Icon, Card, Checkbox, Grid } from 'semantic-ui-react';
 import Book from './Book';
 
-const Inventory = ({ books, alertFilter, setAlertFilter }) => {
+const Inventory = ({ books, alertFilter, setAlertFilter, search }) => {
   return (
     <Grid columns='equal'>
       <Grid.Row>
@@ -11,6 +11,13 @@ const Inventory = ({ books, alertFilter, setAlertFilter }) => {
         </Grid.Column>
         <Grid.Column>
           <Checkbox label='Show alert' checked={alertFilter} toggle onChange={setAlertFilter} />
+        </Grid.Column>
+        <Grid.Column>
+          <Input
+            icon={<Icon name='search' inverted circular link />}
+            placeholder='Search...'
+            onChange={search}
+          />
         </Grid.Column>
         <Grid.Column>
         </Grid.Column>
@@ -26,6 +33,8 @@ const Inventory = ({ books, alertFilter, setAlertFilter }) => {
         <Grid.Column>
         </Grid.Column>
       </Grid.Row>
+      <Grid.Row>
+      </Grid.Row>
     </Grid>
   );
 };
@@ -33,7 +42,8 @@ const Inventory = ({ books, alertFilter, setAlertFilter }) => {
 Inventory.propTypes = {
   books: PropTypes.arrayOf(PropTypes.shape()),
   alertFilter: PropTypes.bool.isRequired,
-  setAlertFilter: PropTypes.func.isRequired
+  setAlertFilter: PropTypes.func.isRequired,
+  search: PropTypes.func.isRequired
 };
 
 Inventory.defaultProps = {

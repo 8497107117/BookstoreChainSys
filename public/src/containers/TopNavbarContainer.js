@@ -33,7 +33,7 @@ const mapDispatchToProps = (dispatch) => ({
     e.preventDefault();
     dispatch(setFilterInventoryBooks(true));
     dispatch(push({
-      pathname: '/inventory'
+      pathname: '/'
     }));
   },
   logout() {

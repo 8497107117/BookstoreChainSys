@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
+const http = require('http');
 const api = require('./src/api.js');
 const indexRoute = require('./src/indexRoute.js');
 const app = express();
@@ -26,12 +27,14 @@ app.use((req, res, next) => {
 app.use(express.static(__dirname + '/public'));
 app.use(express.static(__dirname + '/semantic'));
 
+const server = http.createServer(app).listen(app.get('port'), () => {
+  console.log('Http server is listening on ' + app.get('port'));
+});
+
+const io = require('socket.io').listen(server);
+
 //  Api Routers
-app.use('/api', api);
+app.use('/api', api(io));
 
 //  React Routers   error routers will be resolved by React
 app.use(indexRoute);
-
-app.listen(app.get('port'), () => {
-  console.log('Server listening on ' + app.get('port'));
-});

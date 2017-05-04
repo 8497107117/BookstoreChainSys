@@ -6,6 +6,9 @@ import {
   LOGIN_FAIL,
   LOGOUT
 } from './actionType';
+import { requestInventory } from './inventoryActions';
+import { requestBooks } from './mockingActions';
+import requestTransaction from './transactionActions';
 
 const check = ({ store, password }) => {
   return new Promise((resolve, reject) => {
@@ -37,8 +40,7 @@ const check = ({ store, password }) => {
 };
 
 //  login
-const loginSuccess = (store, token) => {
-  sessionStorage.setItem('token', token);
+const loginSuccess = (store) => {
   return {
     type: LOGIN_SUCCESS,
     store
@@ -50,6 +52,14 @@ const loginFail = (field, errMsg) => {
     type: LOGIN_FAIL,
     field,
     errMsg
+  };
+};
+
+const requestThings = () => {
+  return dispatch => {
+    dispatch(requestInventory());
+    dispatch(requestTransaction());
+    dispatch(requestBooks());
   };
 };
 
@@ -83,8 +93,10 @@ export const login = (data) => {
           .then(res => res.json())
           .then(({ success, result, token }) => {
             if (success) {
+              sessionStorage.setItem('token', token);
               dispatch(pristineLoginForm());
-              dispatch(loginSuccess(result, token));
+              dispatch(loginSuccess(result));
+              dispatch(requestThings());
             }
             else {
               result.forEach(({ field, errMsg }) => {
@@ -102,7 +114,7 @@ export const login = (data) => {
 };
 
 export const verifyAuth = () => {
-  return dispath => {
+  return dispatch => {
     const token = sessionStorage.getItem('token');
     if (token) {
       fetch('/api/verifyAuth', {
@@ -113,7 +125,9 @@ export const verifyAuth = () => {
         .then(res => res.json())
         .then(({ success, result }) => {
           if (success) {
-            dispath(loginSuccess(result, token));
+            sessionStorage.setItem('token', token);
+            dispatch(loginSuccess(result));
+            dispatch(requestThings());
           }
         });
     }

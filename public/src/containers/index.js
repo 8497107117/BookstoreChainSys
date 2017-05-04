@@ -1,13 +1,17 @@
 import AppContainer from './AppContainer';
 import AuthRouteContainer from './AuthRouteContainer';
-import HomeContainer from './HomeContainer';
+import InventoryContainer from './InventoryContainer';
 import LoginContainer from './LoginContainer';
+import MockingContainer from './MockingContainer';
 import PrivateRouteContainer from './PrivateRouteContainer';
+import TransactionContainer from './TransactionContainer';
 
 export {
 	AppContainer,
 	AuthRouteContainer,
-	HomeContainer,
+	InventoryContainer,
 	LoginContainer,
-	PrivateRouteContainer
+	MockingContainer,
+	PrivateRouteContainer,
+	TransactionContainer
 };

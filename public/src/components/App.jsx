@@ -2,14 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Sidebar, Menu, Icon } from 'semantic-ui-react';
-import CardContainer from '../containers/CardContainer';
+import StoreCardContainer from '../containers/StoreCardContainer';
 import TopNavbarContainer from '../containers/TopNavbarContainer';
 
 const App = ({
   children,
   isAuthenticated,
   overlayStyle,
-  sidebarVisible }) => {
+  sidebarVisible,
+  sidebarClick
+ }) => {
   if (!isAuthenticated) {
     return (
       <div id="wrapper">
@@ -30,18 +32,34 @@ const App = ({
           icon='labeled'
           vertical inverted
         >
-          <CardContainer />
-          <Menu.Item as={Link} to="/" name='dashboard'>
-            <Icon name='home' />
-            Dashboard
+          <StoreCardContainer />
+          <Menu.Item as={Link} to="/" name='Inventory'>
+            <Icon name='book' />
+            Inventory
             </Menu.Item>
-          <Menu.Item name='gamepad'>
-            <Icon name='gamepad' />
-            Games
+          <Menu.Item as={Link} to="/transfer" name='Transfer'>
+            <Icon name='shipping' />
+            Transfer
+            </Menu.Item>
+          <Menu.Item as={Link} to="/transaction" name='Transation'>
+            <Icon name='in cart' />
+            Transaction
+            </Menu.Item>
+          <Menu.Item as={Link} to="/chart" name='Chart'>
+            <Icon name='bar chart' />
+            Chart
+            </Menu.Item>
+          <Menu.Item as={Link} to="/mocking" name='Mocking'>
+            <Icon name='barcode' />
+            Mocking
             </Menu.Item>
         </Sidebar>
         <Sidebar.Pusher>
-          <div className="overlay" style={overlayStyle}></div>
+          <div
+            className="overlay"
+            onClick={() => { sidebarClick(sidebarVisible); }}
+            style={overlayStyle}
+          ></div>
           <TopNavbarContainer />
           <div id="content-wrapper">
             {children}
@@ -56,7 +74,8 @@ App.propTypes = {
   children: PropTypes.node.isRequired,
   isAuthenticated: PropTypes.bool.isRequired,
   overlayStyle: PropTypes.shape().isRequired,
-  sidebarVisible: PropTypes.bool.isRequired
+  sidebarVisible: PropTypes.bool.isRequired,
+  sidebarClick: PropTypes.func.isRequired,
 };
 
 App.defaultProps = {

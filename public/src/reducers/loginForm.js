@@ -1,4 +1,4 @@
-import Immutable from 'immutable';
+import Immutable, { fromJS } from 'immutable';
 import { PRISTINE_LOGIN_FORM, LOGIN_ONCHANGE, LOGIN_FAIL } from '../actions';
 
 const initialState = Immutable.fromJS({
@@ -19,17 +19,17 @@ const loginForm = (state = initialState, action) => {
     case PRISTINE_LOGIN_FORM:
       return initialState;
     case LOGIN_ONCHANGE:
-      return state.set(action.field, {
+      return state.set(action.field, fromJS({
         status: false,
         errMsg: '',
         value: action.value
-      });
+      }));
     case LOGIN_FAIL:
-      return state.set(action.field, {
+      return state.set(action.field, fromJS({
         status: true,
         errMsg: action.errMsg,
-        value: state.get(action.field).value
-      });
+        value: state.getIn([action.field, 'value'])
+      }));
     default:
       return state;
   }

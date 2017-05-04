@@ -5,6 +5,7 @@ import LoginContainer from './LoginContainer';
 import MockingContainer from './MockingContainer';
 import PrivateRouteContainer from './PrivateRouteContainer';
 import TransactionContainer from './TransactionContainer';
+import TransferContainer from './TransferContainer';
 
 export {
 	AppContainer,
@@ -13,5 +14,6 @@ export {
 	LoginContainer,
 	MockingContainer,
 	PrivateRouteContainer,
-	TransactionContainer
+	TransactionContainer,
+	TransferContainer
 };

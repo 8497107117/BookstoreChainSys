@@ -6,9 +6,11 @@ const TopNavbar = ({
   storeName,
   sidebarButtonClass,
   sidebarVisible,
+  msgCount,
   alertCount,
   sidebarClick,
   fullscreenClick,
+  msgClick,
   alertClick,
   logout
     }) => {
@@ -31,7 +33,8 @@ const TopNavbar = ({
         <Button icon='window maximize' onClick={fullscreenClick} />
       </Menu.Item>
       <Menu.Item name='transfer'>
-        <Button icon='comment outline' />
+        <Button icon='comment outline' onClick={msgClick} />
+        {msgCount > 0 && <Label color='red' floating circular>{msgCount}</Label>}
       </Menu.Item>
       <Menu.Item name='alert'>
         <Button icon='bell outline' onClick={alertClick} />
@@ -48,9 +51,11 @@ TopNavbar.propTypes = {
   storeName: PropTypes.string.isRequired,
   sidebarButtonClass: PropTypes.string.isRequired,
   sidebarVisible: PropTypes.bool.isRequired,
+  msgCount: PropTypes.number.isRequired,
   alertCount: PropTypes.number.isRequired,
   sidebarClick: PropTypes.func.isRequired,
   fullscreenClick: PropTypes.func.isRequired,
+  msgClick: PropTypes.func.isRequired,
   alertClick: PropTypes.func.isRequired,
   logout: PropTypes.func.isRequired
 };

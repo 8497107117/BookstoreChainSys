@@ -7,7 +7,7 @@ const getInventory = (books) => {
   };
 };
 
-export const setFilterInventoryBooks = (filterValue) => {
+export const setFilterInventoryAlert = (filterValue) => {
   return {
     type: SET_FILTER_INVENTORY_ALERT,
     filterValue

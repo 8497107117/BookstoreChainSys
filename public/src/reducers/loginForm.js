@@ -1,5 +1,5 @@
 import Immutable, { fromJS } from 'immutable';
-import { PRISTINE_LOGIN_FORM, LOGIN_ONCHANGE, LOGIN_FAIL } from '../actions';
+import { PRISTINE_LOGIN_FORM, LOGIN_ONCHANGE, LOGIN_FAIL, LOGOUT } from '../actions';
 
 const initialState = Immutable.fromJS({
   store: {
@@ -30,6 +30,8 @@ const loginForm = (state = initialState, action) => {
         errMsg: action.errMsg,
         value: state.getIn([action.field, 'value'])
       }));
+    case LOGOUT:
+      return initialState;
     default:
       return state;
   }

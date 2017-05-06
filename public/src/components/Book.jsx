@@ -2,12 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Card, Icon, Image, Popup } from 'semantic-ui-react';
 
-const Book = ({ book }) => {
+const Book = ({ book, clickEvent }) => {
   return (
     <Popup
       trigger={
         <Card color={book.alert ? 'red' : null}>
-          <Image src={book.Image} size='small' centered />
+          <Image src={book.Image} size='small' centered onClick={clickEvent} />
           <Card.Content>
             <Card.Header>{book.Name}</Card.Header>
             <Card.Meta>
@@ -17,7 +17,7 @@ const Book = ({ book }) => {
               {!!book.Translator && <span>Translator: {book.Translator}</span>}
             </Card.Meta>
             <Card.Description>
-              Publishing: {book.Publishing}
+              Publishing: {book.PublishingName}
             </Card.Description>
             <Card.Description>
               Publishing Date:<br />{book.PublishingDate.split('T')[0]}
@@ -48,7 +48,8 @@ const Book = ({ book }) => {
 };
 
 Book.propTypes = {
-  book: PropTypes.shape().isRequired
+  book: PropTypes.shape().isRequired,
+  clickEvent: PropTypes.func.isRequired
 };
 
 export default Book;

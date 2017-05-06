@@ -9,7 +9,8 @@ import {
   RETURN_COUNT_ONCHANGE,
   REMOVE_BOOK_ONCHANGE,
   MOCK_DONE,
-  CLOSE_DIMMER
+  CLOSE_DIMMER,
+  LOGOUT
 } from '../actions';
 
 const reviseBookInfo = (books) => {
@@ -67,6 +68,8 @@ const loginForm = (state = initialState, action) => {
       return state.set('msg', action.msg).set('dimmerOpen', true);
     case CLOSE_DIMMER:
       return state.set('msg', '').set('dimmerOpen', false);
+    case LOGOUT:
+      return initialState;
     default:
       return state;
   }

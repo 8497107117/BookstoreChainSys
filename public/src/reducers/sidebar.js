@@ -1,5 +1,5 @@
 import Immutable from 'immutable';
-import { CLOSE_SIDEBAR, OPEN_SIDEBAR } from '../actions';
+import { CLOSE_SIDEBAR, OPEN_SIDEBAR, LOGOUT } from '../actions';
 
 const initialState = Immutable.fromJS({
   buttonClass: 'is-closed',
@@ -17,6 +17,8 @@ const sidebar = (state = initialState, action) => {
       return state.set('buttonClass', 'is-open')
         .set('overlayDisplay', '')
         .set('sidebarVisible', true);
+    case LOGOUT:
+      return initialState;
     default:
       return state;
   }

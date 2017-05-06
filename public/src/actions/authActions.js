@@ -9,6 +9,7 @@ import {
 import { requestInventory } from './inventoryActions';
 import { requestBooks } from './mockingActions';
 import requestTransaction from './transactionActions';
+import { requestRegion } from './transferActions';
 
 const check = ({ store, password }) => {
   return new Promise((resolve, reject) => {
@@ -59,6 +60,7 @@ const requestThings = () => {
   return dispatch => {
     dispatch(requestInventory());
     dispatch(requestTransaction());
+    dispatch(requestRegion());
     dispatch(requestBooks());
   };
 };

@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
-import { setFilterInventoryBooks, searchInventory } from '../actions';
+import { push } from 'react-router-redux';
+import { setFilterInventoryAlert, searchInventory, transferSearchOnChange } from '../actions';
 import Inventory from '../components/Inventory';
 
 const searchBooks = (search) => {
@@ -38,11 +39,15 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   setAlertFilter(e, { checked }) {
     e.preventDefault();
-    dispatch(setFilterInventoryBooks(checked));
+    dispatch(setFilterInventoryAlert(checked));
   },
   search(e, { value }) {
     e.preventDefault();
     dispatch(searchInventory(value));
+  },
+  searchTransfer(ISBN) {
+    dispatch(transferSearchOnChange(ISBN));
+    dispatch(push({ pathname: '/transfer' }));
   }
 });
 

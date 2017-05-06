@@ -8,6 +8,7 @@ const config = require('./config.js');
 const inventoryApi = require('./inventoryApi.js');
 const mockingApi = require('./mockingApi.js');
 const transactionApi = require('./transactionApi.js');
+const transferApi = require('./transferApi.js');
 const router = express.Router();
 const connection = mysql.createConnection(config.databaseConfig);
 
@@ -20,7 +21,7 @@ const api = (io) => {
     .post((req, res) => {
       const { store, password } = req.body;
       const sql = 'SELECT Bookstores.id, Bookstores.Name, Bookstores.Password, Bookstores.Phone, \
-Bookstores.Address, Region.Region \
+Bookstores.Address, Region.id as RegionID, Region.Region \
 FROM Bookstores \
 JOIN Region ON Region.id = Bookstores.Region \
 WHERE Name = ?';
@@ -124,6 +125,7 @@ WHERE Name = ?';
   router.use('/inventory', inventoryApi);
   router.use('/mocking', mockingApi);
   router.use('/transaction', transactionApi);
+  router.use('/transfer', transferApi(io));
 
   return router;
 };

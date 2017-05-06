@@ -1,5 +1,5 @@
 import Immutable, { List } from 'immutable';
-import { GET_INVENTORY, SET_FILTER_INVENTORY_ALERT, INVENTORY_SEARCH_ONCHANGE } from '../actions';
+import { GET_INVENTORY, SET_FILTER_INVENTORY_ALERT, INVENTORY_SEARCH_ONCHANGE, LOGOUT } from '../actions';
 
 const reviseBookInfo = (books) => {
   let revisedBooks = [];
@@ -47,6 +47,8 @@ const inventory = (state = initialState, action) => {
       return state.setIn(['filters', 'showAlert'], action.filterValue);
     case INVENTORY_SEARCH_ONCHANGE:
       return state.setIn(['filters', 'search'], action.searchValue);
+    case LOGOUT:
+      return initialState;
     default:
       return state;
   }

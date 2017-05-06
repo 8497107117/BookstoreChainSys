@@ -1,0 +1,105 @@
+@mixin sidebarButton() {
+	position: fixed;
+	top: 20px;  
+	z-index: 999;
+	display: block;
+	width: 32px;
+	height: 32px;
+	margin-left: 15px;
+	background: transparent;
+	border: none;
+	&:hover, &:focus, &:active {
+		outline: none;
+	}
+	&.is-closed {
+		&:before {
+			content: '';
+			display: block;
+			width: 100px;
+			font-size: 14px;
+			color: #fff;
+			line-height: 32px;
+			text-align: center;
+			opacity: 0;
+			transform: translate3d(0,0,0);
+			transition: all .35s ease-in-out;
+		}
+		&:hover{
+			&:before {
+				opacity: 1;
+				display: block;
+				transform: translate3d(-100px,0,0);
+				transition: all .35s ease-in-out;
+			}
+			.button-top {
+				top: 0;
+				transition: all .35s ease-in-out;
+			}
+			.button-bottom {
+				bottom: 0;
+				transition: all .35s ease-in-out;
+			}
+		}
+		.button-top, .button-middle, .button-bottom {
+			position: absolute;
+			left: 0;
+			height: 4px;
+			width: 100%;
+			background-color: #1a1a1a;
+		}
+		.button-top { 
+			top: 5px; 
+			transition: all .35s ease-in-out;
+		}
+		.button-middle {
+			top: 50%;
+			margin-top: -2px;
+		}
+		.button-bottom {
+			bottom: 5px;  
+			transition: all .35s ease-in-out;
+		}
+	}
+	&.is-open {
+		&:before {
+			content: '';
+			display: block;
+			width: 100px;
+			font-size: 14px;
+			color: #fff;
+			line-height: 32px;
+			text-align: center;
+			opacity: 0;
+			transform: translate3d(0,0,0);
+			transition: all .35s ease-in-out;
+		}
+		&:hover:before {
+			opacity: 1;
+			display: block;
+			transform: translate3d(-100px,0,0);
+			transition: all .35s ease-in-out;
+		}
+		.button-top, .button-middle, .button-bottom {
+			position: absolute;
+			left: 0;
+			height: 4px;
+			width: 100%;
+			background-color: #1a1a1a;
+		}
+		.button-top, .button-bottom {
+			top: 50%;
+			margin-top: -2px;  
+		}
+		.button-top { 
+			transform: rotate(45deg);
+			transition: -webkit-transform .2s cubic-bezier(.73,1,.28,.08);
+		}
+		.button-middle {
+			display: none;
+		}
+		.button-bottom {
+			transform: rotate(-45deg);
+			transition: -webkit-transform .2s cubic-bezier(.73,1,.28,.08);
+		}
+	}
+}

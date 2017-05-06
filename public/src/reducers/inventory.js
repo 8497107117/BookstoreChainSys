@@ -6,7 +6,7 @@ const reviseBookInfo = (books) => {
   books.forEach((book) => {
     revisedBooks.push({
       value: book.id,
-      text: book.Name
+      text: `${book.Name}  -  ${book.ISBN}`
     });
   });
   return revisedBooks;

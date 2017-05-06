@@ -49,9 +49,9 @@ const App = ({
             <Icon name='bar chart' />
             Chart
             </Menu.Item>
-          <Menu.Item as={Link} to="/mocking" name='Mocking'>
+          <Menu.Item as={Link} to="/check" name='Mocking'>
             <Icon name='barcode' />
-            Mocking
+            Check
             </Menu.Item>
         </Sidebar>
         <Sidebar.Pusher>

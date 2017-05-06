@@ -16,10 +16,10 @@ import {
 const reviseBookInfo = (books) => {
   let revisedBooks = [];
   books.forEach((book) => {
-    let revisedBook = {};
-    revisedBook.value = book.id;
-    revisedBook.text = book.Name;
-    revisedBooks.push(revisedBook);
+    revisedBooks.push({
+      value: book.id,
+      text: `${book.Name}  -  ${book.ISBN}`,
+    });
   });
   return revisedBooks;
 };

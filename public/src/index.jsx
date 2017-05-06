@@ -44,7 +44,7 @@ render(
         <PrivateRouteContainer exact path='/' component={InventoryContainer} />
         <PrivateRouteContainer exact path='/transfer' component={TransferContainer} />
         <PrivateRouteContainer exact path='/transaction' component={TransactionContainer} />
-        <PrivateRouteContainer exact path='/mocking' component={MockingContainer} />
+        <PrivateRouteContainer exact path='/check' component={MockingContainer} />
         <AuthRouteContainer path='/login' component={LoginContainer} />
       </AppContainer>
     </ConnectedRouter>

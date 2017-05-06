@@ -30,6 +30,7 @@ import {
 	CLOSE_SIDEBAR,
 	OPEN_SIDEBAR,
 	SET_FILTER_INVENTORY_ALERT,
+	SET_FILTER_SHOW_ALL_BOOKS,
 	INVENTORY_SEARCH_ONCHANGE
 } from './actionType';
 import {
@@ -52,7 +53,12 @@ import {
 	transferCountOnChange,
 	socketConnect
 } from './transferActions';
-import { setFilterInventoryAlert, searchInventory, requestInventory } from './inventoryActions';
+import {
+	setFilterInventoryAlert,
+	setFilterShowAllBooks,
+	searchInventory,
+	requestInventory
+} from './inventoryActions';
 import {
 	sellBook,
 	sellBookOnChange,
@@ -99,6 +105,7 @@ export {
 	CLOSE_SIDEBAR,
 	OPEN_SIDEBAR,
 	SET_FILTER_INVENTORY_ALERT,
+	SET_FILTER_SHOW_ALL_BOOKS,
 	INVENTORY_SEARCH_ONCHANGE,
 	pristineLoginForm,
 	loginOnChange,
@@ -117,6 +124,7 @@ export {
 	transferCountOnChange,
 	socketConnect,
 	setFilterInventoryAlert,
+	setFilterShowAllBooks,
 	searchInventory,
 	requestInventory,
 	sellBook,

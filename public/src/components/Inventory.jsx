@@ -3,7 +3,15 @@ import PropTypes from 'prop-types';
 import { Button, Input, Icon, Card, Checkbox, Grid } from 'semantic-ui-react';
 import Book from './Book';
 
-const Inventory = ({ books, alertFilter, setAlertFilter, searchValue, search, searchTransfer }) => {
+const Inventory = ({ books,
+  alertFilter,
+  showAll,
+  searchValue,
+  setAlertFilter,
+  setShowAllFilter,
+  search,
+  searchTransfer
+ }) => {
   return (
     <Grid columns='equal'>
       <Grid.Row>
@@ -11,6 +19,9 @@ const Inventory = ({ books, alertFilter, setAlertFilter, searchValue, search, se
         </Grid.Column>
         <Grid.Column>
           <Checkbox label='Show alert' checked={alertFilter} toggle onChange={setAlertFilter} />
+        </Grid.Column>
+        <Grid.Column>
+          <Checkbox label='Show All' checked={showAll} toggle onChange={setShowAllFilter} />
         </Grid.Column>
         <Grid.Column>
           <Input
@@ -52,7 +63,9 @@ const Inventory = ({ books, alertFilter, setAlertFilter, searchValue, search, se
 Inventory.propTypes = {
   books: PropTypes.arrayOf(PropTypes.shape()),
   alertFilter: PropTypes.bool.isRequired,
+  showAll: PropTypes.bool.isRequired,
   setAlertFilter: PropTypes.func.isRequired,
+  setShowAllFilter: PropTypes.func.isRequired,
   searchValue: PropTypes.string.isRequired,
   search: PropTypes.func.isRequired,
   searchTransfer: PropTypes.func.isRequired

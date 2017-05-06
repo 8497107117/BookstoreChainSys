@@ -6,7 +6,8 @@ import Inventory from '../components/Inventory';
 const searchBooks = (search) => {
   return (book) => {
     return Object.keys(book).reduce((has, key) => {
-      if (key === 'Author' || key === 'ISBN' || key === 'Name' || key === 'PublishingName' || key === 'Translator') {
+      if (key === 'Author' || key === 'ISBN' || key === 'Name' || key === 'PublishingName' ||
+        key === 'Translator' || key === 'Language' || key === 'Type') {
         return book[key] ? has || book[key].includes(search) : has;
       }
       return has;

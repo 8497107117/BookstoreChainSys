@@ -16,8 +16,9 @@ const transferApi = (io) => {
 			console.log(`user connect: ${socket.bookstoreID}`);
 		});
 		socket.on('get transfer', () => {
-			const sql = 'SELECT Transfer.id, B.id as BookID, B.Name, B.ISBN, B1.id as ReqID, B1.Name as Req, B2.id as ResID, \
-B2.Name as Res, Transfer.Count, Transfer.Accept FROM Transfer \
+			const sql = 'SELECT Transfer.id, B.id as BookID, B.Name, B.ISBN, B1.id as ReqID, B1.Name as Req, \
+B1.Phone as ReqPhone, B2.id as ResID, B2.Name as Res, B2.Phone as ResPhone, Transfer.Count, Transfer.Accept \
+FROM Transfer \
 JOIN Bookstores B1 ON B1.id = Transfer.Request \
 JOIN Bookstores B2 ON B2.id = Transfer.Response \
 JOIN (SELECT Books.id, Books.Name, Books.Author, Books.Translator, Publishing.Name as PublishingName, \

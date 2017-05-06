@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button, Dropdown, Input, Form, Icon, Table, Label, Grid } from 'semantic-ui-react';
+import { Button, Popup, Dropdown, Input, Form, Icon, Table, Label, Grid } from 'semantic-ui-react';
 
 const Transfer = ({
   searchBookValue,
@@ -119,7 +119,7 @@ const Transfer = ({
         </Grid.Column>
         <Grid.Column width={7}>
           <Label as='a' color='orange' size='big' ribbon>Wait Response</Label>
-          <Table color='orange' celled selectable padded>
+          <Table color='orange' celled selectable compact padded>
             <Table.Header>
               <Table.Row textAlign='center'>
                 <Table.HeaderCell>To</Table.HeaderCell>
@@ -137,7 +137,11 @@ const Transfer = ({
                   positive={!!req.Accept}
                   negative={!req.Accept}
                 >
-                  <Table.Cell collapsing>{req.Res}</Table.Cell>
+                  <Popup
+                    trigger={<Table.Cell collapsing>{req.Res}</Table.Cell>}
+                    header={`Bookstore Phone: ${req.ResPhone}`}
+                    inverted
+                  />
                   <Table.Cell collapsing>
                     {req.Name}
                     <Icon
@@ -171,7 +175,7 @@ const Transfer = ({
         </Grid.Column>
         <Grid.Column width={7}>
           <Label as='a' color='green' size='big' ribbon>To Respond</Label>
-          <Table color='green' celled selectable padded>
+          <Table color='green' celled selectable compact padded>
             <Table.Header>
               <Table.Row textAlign='center'>
                 <Table.HeaderCell>From</Table.HeaderCell>
@@ -189,7 +193,11 @@ const Transfer = ({
                   positive={!!res.Accept}
                   negative={!res.Accept}
                 >
-                  <Table.Cell collapsing>{res.Req}</Table.Cell>
+                  <Popup
+                    trigger={<Table.Cell collapsing>{res.Req}</Table.Cell>}
+                    header={`Bookstore Phone: ${res.ReqPhone}`}
+                    inverted
+                  />
                   <Table.Cell collapsing>
                     {res.Name}
                     <Icon
@@ -208,14 +216,25 @@ const Transfer = ({
                     {res.Accept ? 'Transferring' : 'Respond?'}
                   </Table.Cell>
                   <Table.Cell collapsing>
-                    {!res.Accept && <Button
-                      positive
-                      content='Respond'
-                      onClick={(e) => {
-                        e.preventDefault();
-                        sendResponse(res);
-                      }}
-                    />}
+                    {!res.Accept &&
+                      <Button.Group>
+                        <Button
+                          positive
+                          content='Ok'
+                          onClick={(e) => {
+                            e.preventDefault();
+                            sendResponse(res);
+                          }}
+                        />
+                        <Button.Or />
+                        <Button
+                          content='No'
+                          onClick={e => {
+                            e.preventDefault();
+                            removeRequest(res);
+                          }}
+                        />
+                      </Button.Group>}
                   </Table.Cell>
                 </Table.Row>)}
             </Table.Body>

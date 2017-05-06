@@ -34,9 +34,9 @@ const Book = ({ book, clickEvent }) => {
           </Card.Content>
           <Card.Content extra>
             <Icon name='dollar' />{book.Price}
-            <Card.Meta>
+            {!!book.Count && <Card.Meta>
               <span>Count: {book.Count}</span>
-            </Card.Meta>
+            </Card.Meta>}
           </Card.Content>
         </Card>
       }

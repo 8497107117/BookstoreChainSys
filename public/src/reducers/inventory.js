@@ -1,5 +1,11 @@
 import Immutable, { List } from 'immutable';
-import { GET_INVENTORY, SET_FILTER_INVENTORY_ALERT, INVENTORY_SEARCH_ONCHANGE, LOGOUT } from '../actions';
+import {
+  GET_INVENTORY,
+  SET_FILTER_INVENTORY_ALERT,
+  SET_FILTER_SHOW_ALL_BOOKS,
+  INVENTORY_SEARCH_ONCHANGE,
+  LOGOUT
+} from '../actions';
 
 const reviseBookInfo = (books) => {
   let revisedBooks = [];
@@ -32,6 +38,7 @@ const initialState = Immutable.fromJS({
   displayBooks: [],
   filters: {
     showAlert: false,
+    showAll: false,
     search: ''
   },
   alertCount: 0
@@ -45,6 +52,8 @@ const inventory = (state = initialState, action) => {
         .set('displayBooks', List(reviseBookInfo(books.books)));
     case SET_FILTER_INVENTORY_ALERT:
       return state.setIn(['filters', 'showAlert'], action.filterValue);
+    case SET_FILTER_SHOW_ALL_BOOKS:
+      return state.setIn(['filters', 'showAll'], action.filterValue);
     case INVENTORY_SEARCH_ONCHANGE:
       return state.setIn(['filters', 'search'], action.searchValue);
     case LOGOUT:

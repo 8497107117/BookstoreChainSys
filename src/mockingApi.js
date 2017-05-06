@@ -15,7 +15,13 @@ connection.connect((err) => {
 router.route('/books')
   .get((req, res) => {
     const { bookstore } = req;
-    const sql = 'SELECT Books.* From Books';
+    const sql = 'SELECT Books.id, Books.Name, Books.Author, Books.Translator, Publishing.Name as PublishingName, \
+Publishing.Phone as PublishingPhone, Books.PublishingDate, Languages.Language, Types.Type, Books.ISBN, \
+Books.Image, Books.Price FROM Books \
+JOIN Publishing ON Publishing.id = Books.Publishing \
+JOIN Languages ON Languages.id = Books.Language \
+JOIN Types ON Types.id = Books.Type \
+ORDER BY Books.ISBN';
     connection.query(sql, (err, result, fields) => {
       if (err) {
         console.log(err);
